@@ -1,4 +1,33 @@
 // Movies
 .movies {
-  color: $light-blue;
+  color: $off-white;
+  padding: 0 0 $xl-size 0;
+
+  &__box {
+    background: $light-blue;
+    display: flex;
+    align-items: center;
+    padding: $m-size;
+    margin-bottom: .3rem;
+    height: 13.4rem;
+  }
+
+  &__poster {
+    width: $xxl-size;
+    border: .3rem solid $blue;
+  }
+
+  &__title {
+    color: white;
+    padding: $m-size;
+    width: 38rem;
+    word-break: break-all;
+    max-height: $xxl-size;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__description {
+    padding: .1rem;
+  }
 }
