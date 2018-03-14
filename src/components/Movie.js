@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Movie = (props) => (
   <div className="movies__box">
-    <img className="movies__poster" src={props.moviePoster} />
+    <img className="movies__poster" src={props.moviePoster} alt={props.movieTitle} />
     <h2 className="movies__title">{props.movieTitle}</h2>
     <Link className="button" to={`/movie/${props.movieId}`}>view</Link>
   </div>

@@ -8,7 +8,7 @@ const MovieDetail = ({match, data}) => {
     <div className="container">
       <div className="movies">
         <div className="movies__box movies__box--detail">
-          <img className="movies__poster" src={movie.poster} />
+          <img className="movies__poster" src={movie.poster} alt={movie.title} />
           <h2 className="movies__title movies__title--center">{movie.title}</h2>
           <p className="movies__description">{movie.description}</p>
         </div>

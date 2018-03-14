@@ -17,7 +17,7 @@ class Root extends React.Component {
         const movies = res.data;
         this.setState({ movies });
       })
-  }  
+  }
   render() {
     return (
       <BrowserRouter>
