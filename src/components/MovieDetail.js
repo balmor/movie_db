@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 const MovieDetail = ({match, data}) => {
   const movie = data.find(movie => movie.id == match.params.movieId);
-  
+  // No renders when refresh the page (fetchData from Root /movies/movies.json not loaded ? ) Related to Router path ?
+
   return (
     <div className="container">
       <div className="movies">

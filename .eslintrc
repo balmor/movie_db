@@ -18,5 +18,8 @@
   "rules": {
     "no-undef-init": [0],
     "react/prop-types": [0]
+  },
+  "globals": {
+    "fetch": false
   }
 }
