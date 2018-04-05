@@ -8,22 +8,27 @@ import MovieDetail from './MovieDetail';
 import { connect } from 'react-redux';
 import { moviesFetchData } from '../actions/movies';
 
+// TODO
+// - move componenetDidMount to Movies,
+// - use https://www.themoviedb.org/ API,
+// - create one state in redux,
+// - create new fetch for one product,
+// - use `progressive web apps`
+
 class Root extends React.Component {
   state = {
     subtitle: 'List of movies'
   }
   componentDidMount() {
-    this.props.fetchData('http://localhost:8585/movies/movies.json');
+    this.props.fetchData();
   }
   render() {
     if (this.props.hasErrored) {
       return <p>Sorry! There was an error loading the movies</p>;
     }
     if (this.props.isLoading) {
-        return <p>Loading…</p>;
+      return <p>Loading…</p>;
     }
-
-    console.log('props', this.props);
 
     return (
       <BrowserRouter>
@@ -47,7 +52,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      fetchData: (url) => dispatch(moviesFetchData(url))
+      fetchData: () => dispatch(moviesFetchData())
   };
 };
 

@@ -17,10 +17,10 @@ export function moviesFetchDataSuccess(movies) {
   };
 }
 
-export function moviesFetchData(url) {
+export function moviesFetchData() {
   return (dispatch) => {
     dispatch(moviesIsLoading(true));
-    fetch(url)
+    fetch('/movies/movies.json')
       .then((response) => {
         if (!response.ok) {
           throw Error(response.statusText);
