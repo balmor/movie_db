@@ -1,3 +1,9 @@
+/* eslint
+  no-undef: 0,
+  no-console: 0,
+  no-unused-vars: 0
+*/
+
 import { settings } from '../../services/ApiConnect';
 
 // https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
