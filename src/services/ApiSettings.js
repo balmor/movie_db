@@ -1,3 +1,7 @@
+/* eslint
+  no-undef: 0,
+*/
+
 export const settings = {
   baseUrl: 'https://api.themoviedb.org',
   option: '/3/movie/top_rated',
