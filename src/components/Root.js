@@ -30,6 +30,8 @@ class Root extends React.Component {
       return <p>Loading…</p>;
     }
 
+    console.log('process NODE_ENV', process.env.REACT_APP_API_KEY);
+
     return (
       <BrowserRouter>
         <React.Fragment>

@@ -1,4 +1,5 @@
 const path = require('path');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -20,10 +21,13 @@ module.exports = {
       ]
     }]
   },
+  plugins: [
+    new Dotenv({ systemvars: true })
+  ],
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    port: 8787
+    port: 9292
   }
 };
