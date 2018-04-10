@@ -6,7 +6,7 @@ export function moviesHasErrored(state = false, action) {
       return state;
   }
 }
-export function moviesIsLoading(state = false, action) {
+export function moviesIsLoading(state = true, action) {
   switch (action.type) {
     case 'MOVIES_IS_LOADING':
       return action.isLoading;

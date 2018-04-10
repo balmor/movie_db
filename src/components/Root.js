@@ -5,6 +5,8 @@ import Header from './Header';
 import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
 
+import FilmsList from './FilmsList';
+
 import { connect } from 'react-redux';
 import { moviesFetchData } from '../redux/actions/movies';
 
@@ -35,6 +37,7 @@ class Root extends React.Component {
         <React.Fragment>
           <Header subtitle={this.state.subtitle} />
           <Route exact path="/" render={ (props) => <MoviesList data={this.props.movies} {...props} />} />
+          <Route path="/films" component={FilmsList} />
           <Route path="/movie/:movieId" render={ (props) => <MovieDetail data={this.props.movies} {...props} />} />
         </React.Fragment>
       </BrowserRouter>

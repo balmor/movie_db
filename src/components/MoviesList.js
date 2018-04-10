@@ -3,7 +3,7 @@ import React from 'react';
 import Movie from './Movie';
 
 const MoviesList = (props) => {
-console.log(props.data.results)
+//console.log(props.data.results)
 
   return (
     <div className="container">
