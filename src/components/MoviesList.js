@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Movie from './Movie';
 
@@ -7,6 +8,7 @@ const MoviesList = (props) => {
 
   return (
     <div className="container">
+      <Link to="/films" className="link">Films</Link>
       <div className="movies">
         {props.data.map((movie) => (
           <Movie
