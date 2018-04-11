@@ -7,9 +7,8 @@
 import axios from "axios";
 import { settings } from '../../services/ApiSettings';
 
-// https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
+// Get latest movies: https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
 const apiTMDb = `${settings.baseUrl}${settings.option}`;
-const apiTopRated = `${apiTMDb}?api_key=${settings.api_key}&language=${settings.language}&page=1`;
 const myJson = '/movies/movies.json';
 
 export function fetchDataSuccess(films) {
@@ -19,10 +18,16 @@ export function fetchDataSuccess(films) {
   }
 }
 
-export function getLatestMovies() {
+export function getData() {
   return (dispatch) => {
     axios
-    .get(apiTopRated)
+    .get(apiTMDb, {
+      params: {
+        api_key: settings.api_key,
+        language: settings.language,
+        page: 1
+      }
+    })
     .then(res => {
       dispatch(fetchDataSuccess(res.data.results))
     })

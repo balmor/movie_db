@@ -8,7 +8,7 @@ const MoviesList = (props) => {
 
   return (
     <div className="container">
-      <Link to="/films" className="link">Films</Link>
+      <Link to="/films" className="link">TMDb API</Link>
       <div className="movies">
         {props.data.map((movie) => (
           <Movie
@@ -16,6 +16,7 @@ const MoviesList = (props) => {
             movieId={movie.id}
             movieTitle={movie.title}
             moviePoster={movie.poster}
+            movieLink={`/movie/${movie.id}`}
           />
         ))}
       </div>

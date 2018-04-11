@@ -1,21 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Header from './Header';
 import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
+import FilmDetail from './FilmDetail';
+import NotFound from './NotFound';
 
 import FilmsList from './FilmsList';
 
 import { connect } from 'react-redux';
 import { moviesFetchData } from '../redux/actions/movies';
-
-// TODO
-// - move componenetDidMount to Movies,
-// - use https://www.themoviedb.org/ API,
-// - create one state in redux,
-// - create new fetch for one product,
-// - use `progressive web apps`
 
 class Root extends React.Component {
   state = {
@@ -36,9 +31,14 @@ class Root extends React.Component {
       <BrowserRouter>
         <React.Fragment>
           <Header subtitle={this.state.subtitle} />
-          <Route exact path="/" render={ (props) => <MoviesList data={this.props.movies} {...props} />} />
-          <Route path="/films" component={FilmsList} />
-          <Route path="/movie/:movieId" render={ (props) => <MovieDetail data={this.props.movies} {...props} />} />
+          <Switch>
+            <Route exact path="/movies" render={ (props) => <MoviesList data={this.props.movies} {...props} />} />
+            <Route exact path="/films" component={FilmsList} />
+            <Route path="/movie/:movieId" render={ (props) => <MovieDetail data={this.props.movies} {...props} />} />
+            <Route path="/film/:filmId" component={FilmDetail} />
+            <Redirect from="/" to="/films" />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </React.Fragment>
       </BrowserRouter>
     );

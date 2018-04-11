@@ -1,8 +1,10 @@
 import React from 'react';
 import Movie from './Movie';
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getLatestMovies } from '../redux/actions/films';
+import { getData } from '../redux/actions/films';
+import { settings } from '../services/ApiSettings';
 
 class FilmsList extends React.Component {
 
@@ -11,18 +13,20 @@ class FilmsList extends React.Component {
   }
 
   render() {
-    let arr = this.props.films;
-    console.log(arr);
+    const results = this.props.films;
+    console.log(results);
 
     return (
       <div className="container">
         <div className="movies">
-          {arr.map((movie) => (
+          <Link to="/movies" className="link">My API</Link>
+          {results.map((movie) => (
             <Movie
               key={movie.id}
               movieId={movie.id}
               movieTitle={movie.title}
-              moviePoster={movie.poster_path}
+              moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
+              movieLink={`/film/${movie.id}`}
             />
           ))}
         </div>
@@ -39,7 +43,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getLatestMoviesFetch: () => dispatch(getLatestMovies())
+    getLatestMoviesFetch: () => dispatch(getData())
   };
 };
 

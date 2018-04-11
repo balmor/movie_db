@@ -4,11 +4,6 @@
   no-unused-vars: 0
 */
 
-import { settings } from '../../services/ApiSettings';
-
-// https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
-const apiTMDb = `${settings.baseUrl}${settings.option}`;
-const apiTopRated = `${settings.baseUrl}${settings.option}?api_key=${settings.api_key}&language=${settings.language}&page=1`;
 const myJson = '/movies/movies.json';
 
 export function moviesHasErrored(hasErrored) {

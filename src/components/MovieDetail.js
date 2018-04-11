@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 
 const MovieDetail = ({match, data}) => {
   const movie = data.find(movie => movie.id == match.params.movieId) || {};
-  // const paramId = match.params.movieId - 1;
-  // const movie = data[paramId] || {};
-  // console.log(movie)
-
+  console.log(match.params.movieId)
 
   return (
     <div className="container">
@@ -23,7 +20,7 @@ const MovieDetail = ({match, data}) => {
           )
         }
       </div>
-      <Link className="button" to="/">Back to Movies List</Link>
+      <Link className="button" to="/movies">Back to Movies List</Link>
     </div>
   )
 }

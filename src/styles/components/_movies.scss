@@ -46,3 +46,10 @@
   margin-bottom: $s-size;
   display: inline-block;
 }
+
+.notfound {
+  display: block;
+  margin-bottom: $xl-size;
+  text-align: center;
+  font-size: $l-size;
+}
