@@ -2,11 +2,13 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Header from './Header';
-import Movies from './Movies';
+import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
 
+import FilmsList from './FilmsList';
+
 import { connect } from 'react-redux';
-import { moviesFetchData } from '../actions/movies';
+import { moviesFetchData } from '../redux/actions/movies';
 
 // TODO
 // - move componenetDidMount to Movies,
@@ -34,7 +36,8 @@ class Root extends React.Component {
       <BrowserRouter>
         <React.Fragment>
           <Header subtitle={this.state.subtitle} />
-          <Route exact path="/" render={ (props) => <Movies data={this.props.movies} {...props} />} />
+          <Route exact path="/" render={ (props) => <MoviesList data={this.props.movies} {...props} />} />
+          <Route path="/films" component={FilmsList} />
           <Route path="/movie/:movieId" render={ (props) => <MovieDetail data={this.props.movies} {...props} />} />
         </React.Fragment>
       </BrowserRouter>
