@@ -15,4 +15,3 @@ export function movie(state = {}, action) {
       return state;
   }
 }
-

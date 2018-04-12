@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { getSingleData } from '../redux/actions/movies';
+import { getData } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class MovieDetail extends React.Component {
@@ -42,9 +42,14 @@ const mapStateToProps = (state) => {
   };
 };
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     getSingleMovieFetch: (id) => dispatch(getSingleData(id)),
+//   };
+// };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSingleMovieFetch: (id) => dispatch(getSingleData(id))
+    getSingleMovieFetch: (id) => dispatch(getData(id)),
   };
 };
 
