@@ -1,17 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const FilmDetail = ({match}) => {
-  console.log(match.params.filmId)
+import { connect } from 'react-redux';
+import { getSingleData } from '../redux/actions/films';
+import { settings } from '../services/ApiSettings';
 
-  return (
-    <div className="container">
+class FilmDetail extends React.Component {
+
+  componentDidMount() {
+    const id = this.props.match.params.filmId;
+    this.props.getSingleMovieFetch(id);
+  }
+
+  render() {
+    const movie = this.props.film;
+    console.log(movie)
+
+    return (
+      <div className="container">
       <div className="movies">
-        Single TMDb movie (movieID: {match.params.filmId})
+        {
+          !movie.id ?
+          (<p>There is no movie on this url</p>) :
+          (
+          <div className="movies__box movies__box--detail">
+            <img className="movies__poster" src={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`} alt={movie.title} />
+            <h2 className="movies__title movies__title--center">{movie.title}</h2>
+            <p className="movies__description">{movie.overview}</p>
+          </div>
+          )
+        }
       </div>
       <Link className="button" to="/films">Back to Movies List</Link>
     </div>
-  )
+    )
+  }
 }
 
-export default FilmDetail;
+const mapStateToProps = (state) => {
+  return {
+      film: state.film
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSingleMovieFetch: (id) => dispatch(getSingleData(id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilmDetail);

@@ -37,7 +37,7 @@ class Root extends React.Component {
             <Route path="/movie/:movieId" render={ (props) => <MovieDetail data={this.props.movies} {...props} />} />
             <Route path="/film/:filmId" component={FilmDetail} />
             <Redirect from="/" to="/films" />
-            <Route path="*" component={NotFound} />
+            <Route component={NotFound} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>

@@ -14,7 +14,6 @@ class FilmsList extends React.Component {
 
   render() {
     const results = this.props.films;
-    console.log(results);
 
     return (
       <div className="container">

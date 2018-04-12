@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const MovieDetail = ({match, data}) => {
   const movie = data.find(movie => movie.id == match.params.movieId) || {};
-  console.log(match.params.movieId)
 
   return (
     <div className="container">

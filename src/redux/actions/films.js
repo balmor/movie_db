@@ -8,7 +8,8 @@ import axios from "axios";
 import { settings } from '../../services/ApiSettings';
 
 // Get latest movies: https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
-const apiTMDb = `${settings.baseUrl}${settings.option}`;
+const topRated = `${settings.baseUrl}${settings.topRated}`;
+const singleMovie = `${settings.baseUrl}${settings.singleMovie}`;
 const myJson = '/movies/movies.json';
 
 export function fetchDataSuccess(films) {
@@ -18,10 +19,17 @@ export function fetchDataSuccess(films) {
   }
 }
 
+export function fetchSingleDataSuccess(film) {
+  return {
+    type: 'FETCH_SINGLE_DATA_SUCCESS',
+    film
+  }
+}
+
 export function getData() {
   return (dispatch) => {
     axios
-    .get(apiTMDb, {
+    .get(topRated, {
       params: {
         api_key: settings.api_key,
         language: settings.language,
@@ -30,6 +38,22 @@ export function getData() {
     })
     .then(res => {
       dispatch(fetchDataSuccess(res.data.results))
+    })
+    .catch(error => console.log(error))
+  }
+}
+
+export function getSingleData(id) {
+  return (dispatch) => {
+    axios
+    .get(singleMovie + id, {
+      params: {
+        api_key: settings.api_key,
+        language: settings.language
+      }
+    })
+    .then(res => {
+      dispatch(fetchSingleDataSuccess(res.data))
     })
     .catch(error => console.log(error))
   }
