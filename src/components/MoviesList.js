@@ -1,27 +1,47 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import Movie from './Movie';
 
-const MoviesList = (props) => {
-//console.log(props.data.results)
+import { connect } from 'react-redux';
+import { getData } from '../redux/actions/movies';
+import { settings } from '../services/ApiSettings';
 
-  return (
-    <div className="container">
-      <Link to="/films" className="link">TMDb API</Link>
-      <div className="movies">
-        {props.data.map((movie) => (
-          <Movie
-            key={movie.id}
-            movieId={movie.id}
-            movieTitle={movie.title}
-            moviePoster={movie.poster}
-            movieLink={`/movie/${movie.id}`}
-          />
-        ))}
+class MoviesList extends React.Component {
+
+  componentDidMount() {
+    this.props.getLatestMoviesFetch();
+  }
+
+  render() {
+    const results = this.props.movies;
+
+    return (
+      <div className="container">
+        <div className="movies">
+          {results.map((movie) => (
+            <Movie
+              key={movie.id}
+              movieId={movie.id}
+              movieTitle={movie.title}
+              moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
+              movieLink={`/movie/${movie.id}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    );
+  }
 }
 
-export default MoviesList;
+const mapStateToProps = (state) => {
+  return {
+      movies: state.movies
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getLatestMoviesFetch: () => dispatch(getData())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);
