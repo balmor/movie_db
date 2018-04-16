@@ -20,7 +20,7 @@ module.exports = {
         'sass-loader'
       ]
     },{
-      test: /\.(png|jpg|gif)$/,
+      test: /\.(ico|gif|png|jpg|jpeg|svg|webp)$/,
       loader: 'url-loader'
     }]
   },
