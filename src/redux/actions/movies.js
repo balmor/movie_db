@@ -8,56 +8,72 @@ import axios from "axios";
 import { settings } from '../../services/ApiSettings';
 
 // Get latest movies: https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
-const topRated = `${settings.baseUrl}${settings.topRated}`;
-const singleMovie = `${settings.baseUrl}${settings.singleMovie}`;
-const myJson = '/movies/movies.json';
 
-const paramsTopRated = {
+const tmdb = axios.create({
+  baseURL: settings.baseUrl,
   params: {
     api_key: settings.api_key,
     language: settings.language,
     page: 1
-  }
-}
+  },
+});
 
-const paramsSingleMovie = {
-  params: {
-    api_key: settings.api_key,
-    language: settings.language,
-    page: 1
-  }
-}
-
-export function fetchDataSuccess(movies) {
+export function fetchDataSuccess(items = []) {
   return {
     type: 'FETCH_DATA_SUCCESS',
-    movies
+    items
   }
 }
 
-export function fetchSingleDataSuccess(movie) {
+export function fetchSingleDataSuccess(item = {}) {
   return {
     type: 'FETCH_SINGLE_DATA_SUCCESS',
-    movie
+    item
+  }
+}
+
+export function fetchDataLoading(isLoading = false) {
+  return {
+    type: 'FETCH_DATA_LOADING',
+    isLoading
+  }
+}
+
+export function fetchDataFailed(isFailed = null) {
+  return {
+    type: 'FETCH_DATA_FAILED',
+    isFailed
   }
 }
 
 export function getData(id) {
   return (dispatch) => {
+    dispatch(fetchDataLoading(true))
+
+    let properUrl;
+
     if (id) {
-      axios
-      .get(singleMovie + id, paramsSingleMovie)
-      .then(res => {
-        dispatch(fetchSingleDataSuccess(res.data))
-      })
-      .catch(error => console.log(error))
+      properUrl = settings.singleMovie + id;
     } else {
-      axios
-      .get(topRated, paramsTopRated)
-      .then(res => {
-        dispatch(fetchDataSuccess(res.data.results))
-      })
-      .catch(error => console.log(error))
+      properUrl = settings.topRated
     }
+
+    tmdb
+    .get(properUrl)
+    .then(res => {
+      if (id) {
+        dispatch(fetchSingleDataSuccess(res.data))
+      } else {
+        dispatch(fetchDataSuccess(res.data.results))
+      }
+    })
+    .catch(error => {
+      const statusMessage = error.response.data.status_message;
+      if (statusMessage) {
+        dispatch(fetchDataFailed(statusMessage));
+      } else {
+        dispatch(fetchDataFailed('Something went wrong'));
+      }
+    })
   }
 }

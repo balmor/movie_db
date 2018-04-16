@@ -10,24 +10,20 @@ class Root extends React.Component {
   state = {
     subtitle: 'List of movies'
   }
-  render() {
-    if (this.props.hasErrored) {
-      return <p>Sorry! There was an error loading the movies</p>;
-    }
-    if (this.props.isLoading) {
-      return <p>Loading…</p>;
-    }
 
+  render() {
     return (
       <BrowserRouter>
         <React.Fragment>
           <Header subtitle={this.state.subtitle} />
-          <Switch>
-            <Route exact path="/movies" component={MoviesList} />
-            <Route path="/movie/:movieId" component={MovieDetail} />
-            <Redirect from="/" to="/movies" />
-            <Route component={NotFound} />
-          </Switch>
+          <div className="container">
+            <Switch>
+              <Route exact path="/movies" component={MoviesList} />
+              <Route path="/movie/:movieId" component={MovieDetail} />
+              <Redirect from="/" to="/movies" />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
         </React.Fragment>
       </BrowserRouter>
     );

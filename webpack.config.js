@@ -16,7 +16,7 @@ module.exports = {
       test: /\.s?css$/,
       use: [
         'style-loader',
-        'css-loader',
+        'css-loader?importLoaders=1&modules=false',
         'sass-loader'
       ]
     }]
@@ -28,6 +28,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    port: 9595
+    port: 8989
   }
 };

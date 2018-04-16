@@ -21,7 +21,7 @@ yarn build
 
 ## TODO:
 - [x] use [themoviedb.org](https://developers.themoviedb.org/3/getting-started) API
-- [ ] create one state in redux
-- [ ] move componenetDidMount to Movies
-- [ ] create new fetch for single movie
+- [x] create one state in redux
+- [x] move componenetDidMount to Movies
+- [x] create new fetch for single movie
 - [ ] use `progressive web apps`

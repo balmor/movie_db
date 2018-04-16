@@ -14,19 +14,25 @@ class MoviesList extends React.Component {
   render() {
     const results = this.props.movies;
 
+    if (this.props.isLoading) {
+      return <p>Loading…</p>;
+    }
+
+    if (this.props.isFailed) {
+      return <p>{this.props.isFailed}</p>;
+    }
+
     return (
-      <div className="container">
-        <div className="movies">
-          {results.map((movie) => (
-            <Movie
-              key={movie.id}
-              movieId={movie.id}
-              movieTitle={movie.title}
-              moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
-              movieLink={`/movie/${movie.id}`}
-            />
-          ))}
-        </div>
+      <div className="movies">
+        {results.map((movie) => (
+          <Movie
+            key={movie.id}
+            movieId={movie.id}
+            movieTitle={movie.title}
+            moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
+            movieLink={`/movie/${movie.id}`}
+          />
+        ))}
       </div>
     );
   }
@@ -34,7 +40,9 @@ class MoviesList extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-      movies: state.movies
+    movies: state.movies.items,
+    isLoading: state.movies.isLoading,
+    isFailed: state.movie.isFailed
   };
 };
 

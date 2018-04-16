@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Spinner from 'react-spinkit';
 
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions/movies';
@@ -15,38 +16,38 @@ class MovieDetail extends React.Component {
   render() {
     const movie = this.props.movie;
 
+    if (this.props.isLoading) {
+      return <Spinner name="cube-grid" color="steelblue" />;
+    }
+
+    if (this.props.isFailed) {
+      return <p>{this.props.isFailed}</p>;
+    }
+
     return (
-      <div className="container">
-      <div className="movies">
-        {
-          !movie.id ?
-          (<p>There is no movie on this url</p>) :
-          (
+      <React.Fragment>
+        <Spinner name="cube-grid" color="steelblue" />
+        <div className="movies">
           <div className="movies__box movies__box--detail">
             <img className="movies__poster" src={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`} alt={movie.title} />
             <h2 className="movies__title movies__title--center">{movie.title}</h2>
             <p className="movies__description">{movie.overview}</p>
           </div>
-          )
-        }
-      </div>
-      <Link className="button" to="/movies">Back to Movies List</Link>
-    </div>
+        </div>
+        <Link className="button" to="/movies">Back to Movies List</Link>
+      </React.Fragment>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-      movie: state.movie
+      movie: state.movie.item,
+      isLoading: state.movie.isLoading,
+      isFailed: state.movie.isFailed
   };
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     getSingleMovieFetch: (id) => dispatch(getSingleData(id)),
-//   };
-// };
 const mapDispatchToProps = (dispatch) => {
   return {
     getSingleMovieFetch: (id) => dispatch(getData(id)),
