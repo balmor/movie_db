@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Movie from './Movie';
+import { ThreeBounce } from 'better-react-spinkit'
+import ScrollToTop from 'react-scroll-up';
 
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions/movies';
@@ -15,11 +18,16 @@ class MoviesList extends React.Component {
     const results = this.props.movies;
 
     if (this.props.isLoading) {
-      return <p>Loading…</p>;
+      return <ThreeBounce className="spinner" size={50} color="#01d277" />
     }
 
     if (this.props.isFailed) {
-      return <p>{this.props.isFailed}</p>;
+      return (
+        <React.Fragment>
+          <p className="failed">{this.props.isFailed}</p>
+          <Link className="button" to="/movies">Back to Movies List</Link>
+        </React.Fragment>
+      )
     }
 
     return (
@@ -33,6 +41,9 @@ class MoviesList extends React.Component {
             movieLink={`/movie/${movie.id}`}
           />
         ))}
+        <ScrollToTop showUnder={160} style={{right: 200}}>
+          <i className="scroll-up"></i>
+        </ScrollToTop>
       </div>
     );
   }

@@ -19,6 +19,9 @@ module.exports = {
         'css-loader?importLoaders=1&modules=false',
         'sass-loader'
       ]
+    },{
+      test: /\.(png|jpg|gif)$/,
+      loader: 'url-loader'
     }]
   },
   plugins: [
@@ -28,6 +31,6 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    port: 8989
+    port: 9191
   }
 };

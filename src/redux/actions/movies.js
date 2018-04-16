@@ -72,7 +72,7 @@ export function getData(id) {
       if (statusMessage) {
         dispatch(fetchDataFailed(statusMessage));
       } else {
-        dispatch(fetchDataFailed('Something went wrong'));
+        dispatch(fetchDataFailed(settings.error));
       }
     })
   }

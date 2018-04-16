@@ -8,3 +8,45 @@ body {
   font-size: $m-size;
   color: darken(white, 5%);
 }
+
+.failed {
+  font-size: 2.6rem;
+  text-align: center;
+  margin: $xxl-size auto;
+}
+
+.scroll-up {
+  display: inline-block;
+  width: $xl-size;
+  height: $xl-size;
+  border-radius: 15%;
+  border: $xxs-size solid darken($green, 10%);
+
+  &:before {
+    border-right: 5px solid $green;
+    border-top: 5px solid $green;
+    content: '';
+    display: inline-block;
+    height: 1.5rem;
+    margin-top: 1.8rem;
+    margin-left: 1.4rem;
+    width: 1.5rem;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+
+  &:hover {
+    border-color: darken(white, 15%);
+
+    &:before {
+      border-color: darken(white, 15%);
+    }
+  }
+}
+
+.spinner {
+  margin: $xxl-size auto;
+  width: 158px;
+  display: block;
+}

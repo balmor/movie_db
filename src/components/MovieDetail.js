@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Spinner from 'react-spinkit';
+import { ThreeBounce } from 'better-react-spinkit'
 
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions/movies';
@@ -17,16 +17,20 @@ class MovieDetail extends React.Component {
     const movie = this.props.movie;
 
     if (this.props.isLoading) {
-      return <Spinner name="cube-grid" color="steelblue" />;
+      return <ThreeBounce className="spinner" size={50} color="#01d277" />
     }
 
     if (this.props.isFailed) {
-      return <p>{this.props.isFailed}</p>;
+      return (
+        <React.Fragment>
+          <p className="failed">{this.props.isFailed}</p>
+          <Link className="button" to="/movies">Back to Movies List</Link>
+        </React.Fragment>
+      )
     }
 
     return (
       <React.Fragment>
-        <Spinner name="cube-grid" color="steelblue" />
         <div className="movies">
           <div className="movies__box movies__box--detail">
             <img className="movies__poster" src={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`} alt={movie.title} />
