@@ -24,6 +24,6 @@ yarn build
 - [x] create one state in redux
 - [x] move componenetDidMount to Movies
 - [x] create new fetch for single movie
-- [ ] failed fetching as component
-- [ ] add custom fonts
+- [x] failed fetching as component
+- [ ] add custom font
 - [ ] use `progressive web apps`

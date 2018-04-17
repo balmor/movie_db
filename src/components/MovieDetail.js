@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ThreeBounce } from 'better-react-spinkit'
+import Failed from './Failed';
 
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions/movies';
@@ -21,12 +22,7 @@ class MovieDetail extends React.Component {
     }
 
     if (this.props.isFailed) {
-      return (
-        <React.Fragment>
-          <p className="failed">{this.props.isFailed}</p>
-          <Link className="button" to="/movies">Back to Movies List</Link>
-        </React.Fragment>
-      )
+      return <Failed isError={this.props.isFailed} />
     }
 
     return (
