@@ -22,7 +22,11 @@ module.exports = {
     },{
       test: /\.(ico|gif|png|jpg|jpeg|svg|webp)$/,
       loader: 'url-loader'
-    }]
+    },{
+      test: /\.(eot|ttf|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+      loader: "file-loader"
+    }
+  ]
   },
   plugins: [
     new Dotenv({ systemvars: true })
@@ -32,6 +36,6 @@ module.exports = {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
     open: true,
-    port: 9191
+    port: 8383
   }
 };

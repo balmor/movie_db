@@ -26,7 +26,7 @@ export function fetchDataSuccess(items = []) {
   }
 }
 
-export function fetchSearchSuccess(items = [], currentPage = 1, totalPages = 1, totalResults = 0) {
+export function fetchSearchSuccess(items = [], currentPage = 0, totalPages = 0, totalResults = 0) {
   return {
     type: 'FETCH_SEARCH_SUCCESS',
     items,
@@ -89,7 +89,7 @@ export function getData(id) {
   }
 }
 
-export function  searchData(query, page = 1) {
+export function searchData(query, page = 1) {
   return (dispatch) => {
     dispatch(fetchDataLoading(true))
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from './Movie';
 import { ThreeBounce } from 'better-react-spinkit'
+import ScrollToTop from 'react-scroll-up';
 import Failed from './Failed';
 
 import { connect } from 'react-redux';
@@ -10,7 +11,8 @@ import { settings } from '../services/ApiSettings';
 class Search extends React.Component {
 
   componentDidMount() {
-    this.props.fetchSearch('coco');
+    const searchQuery = 'coco';
+    this.props.fetchSearch(searchQuery);
   }
 
   handleSearchSubmit = (e) => {
@@ -33,14 +35,14 @@ class Search extends React.Component {
     }
 
     return (
-      <div className="container">
+      <React.Fragment>
         <form className="search" onSubmit={this.handleSearchSubmit}>
-          <input className="search__input" type="text" name="search" placeholder="Search movie" />
-          <button className="search__submit" type="submit" value="Submit" >Search</button>
+          <input className="search__input" type="text" name="search" placeholder="Search Movie Title..." />
+          <button className="search__submit icon-magnifier icons" type="submit" value="Submit" ></button>
         </form>
 
         <div className="seacrh__results">
-          <p>Total results: {totalResults} / Current page: {currentPage} / Total pagse: {totalPages}</p>
+          <p>Total results: {totalResults} / Current page: {currentPage} / Total pages: {totalPages}</p>
         </div>
 
         <div className="movies">
@@ -54,7 +56,11 @@ class Search extends React.Component {
             />
           ))}
         </div>
-      </div>
+
+        <ScrollToTop showUnder={160} style={{right: 200}}>
+          <i className="scroll-up"></i>
+        </ScrollToTop>
+      </React.Fragment>
     )
   }
 }

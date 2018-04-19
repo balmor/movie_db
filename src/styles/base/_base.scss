@@ -21,6 +21,7 @@ body {
   height: $xl-size;
   border-radius: 15%;
   border: $xxs-size solid darken($green, 10%);
+  transition: all .2s ease-in-out;
 
   &:before {
     border-right: 5px solid $green;
@@ -34,6 +35,7 @@ body {
     -moz-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
+    transition: all .2s ease-in-out;
   }
 
   &:hover {

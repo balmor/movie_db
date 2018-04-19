@@ -1,0 +1,51 @@
+// Search
+.search {
+  display: flex;
+  position: relative;
+  width: 100%;
+  margin-bottom: $xl-size;
+
+  &__input {
+    width: 100%;
+    //background: lighten($light-blue, 10%);
+    background: none;
+    border: 0;
+    border-bottom: 0.1rem solid white;
+    line-height: $l-size;
+    padding: $xxs-size 0;
+    padding-right: $xl-size;
+    color: white;
+    outline: none;
+    //font-weight: bold;
+    transition: all .2s ease-in-out;
+
+    &::placeholder {
+      color: darken(white, 40%);
+      transition: all .2s ease-in-out;
+    }
+
+    &:focus {
+      border-color: $green;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  &__submit {
+    position: absolute;
+    bottom: $s-size;
+    right: $xs-size;
+    background: none;
+    border: 0;
+    outline: none;
+    cursor: pointer;
+    color: white;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      color: $green;
+    }
+  }
+}
