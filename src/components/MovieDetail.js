@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ThreeBounce } from 'better-react-spinkit'
 import Failed from './Failed';
+import tmdbSquare from '../../public/images/tmdb-square.svg';
 
 import { connect } from 'react-redux';
 import { getData } from '../redux/actions/movies';
@@ -16,6 +17,7 @@ class MovieDetail extends React.Component {
 
   render() {
     const movie = this.props.movie;
+    const tmdbPoster = movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}` : tmdbSquare;
 
     if (this.props.isLoading) {
       return <ThreeBounce className="spinner" size={50} color="#01d277" />
@@ -29,7 +31,7 @@ class MovieDetail extends React.Component {
       <React.Fragment>
         <div className="movies">
           <div className="movies__box movies__box--detail">
-            <img className="movies__poster" src={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`} alt={movie.title} />
+            <img className="movies__poster" src={tmdbPoster} alt={movie.title} />
             <h2 className="movies__title movies__title--center">{movie.title}</h2>
             <p className="movies__description">{movie.overview}</p>
           </div>

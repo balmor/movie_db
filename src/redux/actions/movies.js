@@ -8,6 +8,7 @@ import axios from "axios";
 import { settings } from '../../services/ApiSettings';
 
 // Get latest movies: https://api.themoviedb.org/3/movie/top_rated?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=pl-PL&page=1
+// Search movie: https://api.themoviedb.org/3/search/movie?api_key=e09cede2b3058cd5a1257146d6c70bc6&language=en-US&query=coco&page=1&include_adult=false
 
 const tmdb = axios.create({
   baseURL: settings.baseUrl,
@@ -22,6 +23,16 @@ export function fetchDataSuccess(items = []) {
   return {
     type: 'FETCH_DATA_SUCCESS',
     items
+  }
+}
+
+export function fetchSearchSuccess(items = [], currentPage = 1, totalPages = 1, totalResults = 0) {
+  return {
+    type: 'FETCH_SEARCH_SUCCESS',
+    items,
+    currentPage,
+    totalPages,
+    totalResults
   }
 }
 
@@ -66,6 +77,32 @@ export function getData(id) {
       } else {
         dispatch(fetchDataSuccess(res.data.results))
       }
+    })
+    .catch(error => {
+      const statusMessage = error.response.data.status_message;
+      if (statusMessage) {
+        dispatch(fetchDataFailed(statusMessage));
+      } else {
+        dispatch(fetchDataFailed(settings.error));
+      }
+    })
+  }
+}
+
+export function  searchData(query, page = 1) {
+  return (dispatch) => {
+    dispatch(fetchDataLoading(true))
+
+    tmdb
+    .get(settings.searchMovie, {
+      params: {
+        query,
+        page,
+        include_adult: false
+      }
+    })
+    .then(res => {
+      dispatch(fetchSearchSuccess(res.data.results, res.data.page, res.data.total_pages, res.data.total_results))
     })
     .catch(error => {
       const statusMessage = error.response.data.status_message;

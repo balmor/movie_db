@@ -5,6 +5,7 @@ import Header from './Header';
 import MoviesList from './MoviesList';
 import MovieDetail from './MovieDetail';
 import NotFound from './NotFound';
+import Search from './Search';
 
 class Root extends React.Component {
   state = {
@@ -18,9 +19,9 @@ class Root extends React.Component {
           <Header subtitle={this.state.subtitle} />
           <div className="container">
             <Switch>
+              <Route exact path="/" component={Search} />
               <Route exact path="/movies" component={MoviesList} />
               <Route path="/movie/:movieId" component={MovieDetail} />
-              <Redirect from="/" to="/movies" />
               <Route component={NotFound} />
             </Switch>
           </div>

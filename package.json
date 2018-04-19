@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "dev": "webpack-dev-server"
   },
   "dependencies": {
     "better-react-spinkit": "^2.0.4",

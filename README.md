@@ -11,7 +11,7 @@ yarn install
 
 Use webpack-dev-server for local development:
 ```
-yarn dev-server
+yarn dev
 ```
 
 Build the app:
