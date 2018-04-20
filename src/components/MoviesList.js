@@ -48,7 +48,8 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies.items,
     isLoading: state.movies.isLoading,
-    isFailed: state.movie.isFailed
+    isFailed: state.movie.isFailed,
+    state
   };
 };
 

@@ -20,7 +20,11 @@ class MovieDetail extends React.Component {
     const tmdbPoster = movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}` : tmdbSquare;
 
     if (this.props.isLoading) {
-      return <ThreeBounce className="spinner" size={50} color="#01d277" />
+      return <ThreeBounce
+              className="spinner"
+              size={50}
+              color="#01d277"
+            />
     }
 
     if (this.props.isFailed) {
@@ -31,12 +35,16 @@ class MovieDetail extends React.Component {
       <React.Fragment>
         <div className="movies">
           <div className="movies__box movies__box--detail">
-            <img className="movies__poster" src={tmdbPoster} alt={movie.title} />
+            <img
+              className="movies__poster"
+              src={tmdbPoster}
+              alt={movie.title}
+            />
             <h2 className="movies__title movies__title--center">{movie.title}</h2>
             <p className="movies__description">{movie.overview}</p>
           </div>
         </div>
-        <Link className="button" to="/movies">Back to Movies List</Link>
+        <Link className="button" to="/">Back to Homepage</Link>
       </React.Fragment>
     )
   }

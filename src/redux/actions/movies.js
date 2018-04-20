@@ -85,6 +85,8 @@ export function getData(id) {
       } else {
         dispatch(fetchDataFailed(settings.error));
       }
+
+      //dispatch(fetchDataFailed(settings.error));
     })
   }
 }
@@ -105,7 +107,7 @@ export function searchData(query, page = 1) {
       dispatch(fetchSearchSuccess(res.data.results, res.data.page, res.data.total_pages, res.data.total_results))
     })
     .catch(error => {
-      const statusMessage = error.response.data.status_message;
+      const statusMessage = error.response.data.errors;
       if (statusMessage) {
         dispatch(fetchDataFailed(statusMessage));
       } else {

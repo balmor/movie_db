@@ -27,7 +27,7 @@ export function movies(state = defaultStateItems, action) {
       return {
         ...state,
         isLoading: false,
-        failed: action.failed
+        isFailed: action.isFailed
       }
     default:
       return state;
@@ -78,7 +78,7 @@ export function search(state = defaultStateItems, action) {
       return {
         ...state,
         isLoading: false,
-        failed: action.failed
+        isFailed: action.isFailed
       }
     default:
       return state;

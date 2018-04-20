@@ -9,41 +9,60 @@ import { searchData } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class Search extends React.Component {
-
-  componentDidMount() {
-    const searchQuery = 'coco';
-    this.props.fetchSearch(searchQuery);
+  state = {
+    queryText: ''
   }
 
   handleSearchSubmit = (e) => {
-
     e.preventDefault();
+    const {queryText} = this.state;
 
+    if (queryText !== '') {
+      this.props.fetchSearch(queryText);
+    }
+  }
+
+  handleSearchInput = (e) => {
+    this.setState({
+      queryText: e.target.value
+    })
   }
 
   render() {
-    console.log(this.props);
+    //console.log(this.props);
     const results = this.props.items;
-    const {totalResults, currentPage, totalPages} = this.props;
-
-    if (this.props.isLoading) {
-      return <ThreeBounce className="spinner" size={50} color="#01d277" />
-    }
-
-    if (this.props.isFailed) {
-      return <Failed isError={this.props.isFailed} />
-    }
+    const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
     return (
       <React.Fragment>
-        <form className="search" onSubmit={this.handleSearchSubmit}>
-          <input className="search__input" type="text" name="search" placeholder="Search Movie Title..." />
-          <button className="search__submit icon-magnifier icons" type="submit" value="Submit" ></button>
+        <form
+          className="search"
+          onSubmit={this.handleSearchSubmit}>
+          <input
+            className="search__input"
+            onChange={this.handleSearchInput}
+            type="text"
+            name="search"
+            placeholder="Search Movie Title..."
+            autoComplete="off"
+          />
+          <button
+            className="search__submit icon-magnifier icons"
+            type="submit"
+            value="Submit"
+          ></button>
         </form>
 
-        <div className="seacrh__results">
-          <p>Total results: {totalResults} / Current page: {currentPage} / Total pages: {totalPages}</p>
-        </div>
+        {isFailed && <Failed isError={isFailed} />}
+
+        {totalResults > 0 &&
+          <div className="search__results">
+            <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
+          </div>
+        }
+
+
+        {isLoading && <ThreeBounce className="spinner" size={50} color="#01d277" />}
 
         <div className="movies">
           {results.map((movie) => (

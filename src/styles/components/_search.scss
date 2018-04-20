@@ -16,6 +16,8 @@
     padding-right: $xl-size;
     color: white;
     outline: none;
+    font-family: $main-font;
+
     //font-weight: bold;
     transition: all .2s ease-in-out;
 
@@ -45,6 +47,12 @@
     transition: all .2s ease-in-out;
 
     &:hover {
+      color: $green;
+    }
+  }
+
+  &__results {
+    &--sep {
       color: $green;
     }
   }

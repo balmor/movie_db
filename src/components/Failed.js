@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Failed = (props) => (
   <React.Fragment>
     <p className="failed">{props.isError}</p>
-    <Link className="button" to="/movies">Back to Movies List</Link>
+    <Link className="button" to="/">Back to Homepage</Link>
   </React.Fragment>
 )
 

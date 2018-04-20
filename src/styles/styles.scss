@@ -1,6 +1,7 @@
 @import './base/settings';
 $simple-line-font-path: "~simple-line-icons/fonts/";
 @import "~simple-line-icons/scss/simple-line-icons";
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
 @import './base/base';
 @import './components/header';
 @import './components/footer';
