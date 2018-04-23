@@ -17,6 +17,7 @@ class MovieDetail extends React.Component {
 
   render() {
     const movie = this.props.movie;
+    //console.log('props', this.props);
     const tmdbPoster = movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}` : tmdbSquare;
 
     if (this.props.isLoading) {

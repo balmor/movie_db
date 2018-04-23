@@ -26,16 +26,6 @@ export function fetchDataSuccess(items = []) {
   }
 }
 
-export function fetchSearchSuccess(items = [], currentPage = 0, totalPages = 0, totalResults = 0) {
-  return {
-    type: 'FETCH_SEARCH_SUCCESS',
-    items,
-    currentPage,
-    totalPages,
-    totalResults
-  }
-}
-
 export function fetchSingleDataSuccess(item = {}) {
   return {
     type: 'FETCH_SINGLE_DATA_SUCCESS',
@@ -53,6 +43,30 @@ export function fetchDataLoading(isLoading = false) {
 export function fetchDataFailed(isFailed = null) {
   return {
     type: 'FETCH_DATA_FAILED',
+    isFailed
+  }
+}
+
+export function fetchSearchSuccess(items = [], currentPage = 0, totalPages = 0, totalResults = 0) {
+  return {
+    type: 'FETCH_SEARCH_SUCCESS',
+    items,
+    currentPage,
+    totalPages,
+    totalResults
+  }
+}
+
+export function fetchSearchLoading(isLoading = false) {
+  return {
+    type: 'FETCH_SEARCH_LOADING',
+    isLoading
+  }
+}
+
+export function fetchSearchFailed(isFailed = null) {
+  return {
+    type: 'FETCH_SEARCH_FAILED',
     isFailed
   }
 }
@@ -93,7 +107,7 @@ export function getData(id) {
 
 export function searchData(query, page = 1) {
   return (dispatch) => {
-    dispatch(fetchDataLoading(true))
+    dispatch(fetchSearchLoading(true))
 
     tmdb
     .get(settings.searchMovie, {
@@ -109,9 +123,9 @@ export function searchData(query, page = 1) {
     .catch(error => {
       const statusMessage = error.response.data.errors;
       if (statusMessage) {
-        dispatch(fetchDataFailed(statusMessage));
+        dispatch(fetchSearchFailed(statusMessage));
       } else {
-        dispatch(fetchDataFailed(settings.error));
+        dispatch(fetchSearchFailed(settings.error));
       }
     })
   }

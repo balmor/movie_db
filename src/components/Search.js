@@ -1,5 +1,6 @@
 import React from 'react';
 import Movie from './Movie';
+import SearchBox from './SearchBox';
 import { ThreeBounce } from 'better-react-spinkit'
 import ScrollToTop from 'react-scroll-up';
 import Failed from './Failed';
@@ -13,6 +14,12 @@ class Search extends React.Component {
     queryText: ''
   }
 
+  handleSearchInput = (e) => {
+    this.setState({
+      queryText: e.target.value
+    })
+  }
+
   handleSearchSubmit = (e) => {
     e.preventDefault();
     const {queryText} = this.state;
@@ -22,38 +29,17 @@ class Search extends React.Component {
     }
   }
 
-  handleSearchInput = (e) => {
-    this.setState({
-      queryText: e.target.value
-    })
-  }
-
   render() {
-    //console.log(this.props);
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
     return (
       <React.Fragment>
-        <form
-          className="search"
-          onSubmit={this.handleSearchSubmit}>
-          <input
-            className="search__input"
-            onChange={this.handleSearchInput}
-            type="text"
-            name="search"
-            placeholder="Search Movie Title..."
-            autoComplete="off"
-          />
-          <button
-            className="search__submit icon-magnifier icons"
-            type="submit"
-            value="Submit"
-          ></button>
-        </form>
+        <SearchBox handleSearchInput={this.handleSearchInput} handleSearchSubmit={this.handleSearchSubmit} />
 
         {isFailed && <Failed isError={isFailed} />}
+
+        {isLoading && <ThreeBounce className="spinner" size={50} color="#01d277" />}
 
         {totalResults > 0 &&
           <div className="search__results">
@@ -61,8 +47,7 @@ class Search extends React.Component {
           </div>
         }
 
-
-        {isLoading && <ThreeBounce className="spinner" size={50} color="#01d277" />}
+        {totalResults === 0 && <p>There is no results</p>}
 
         <div className="movies">
           {results.map((movie) => (

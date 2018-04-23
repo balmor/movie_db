@@ -25,7 +25,7 @@ yarn build
 - [x] move componenetDidMount to Movies
 - [x] create new fetch for single movie
 - [x] failed fetching as component
-- [ ] add serach movie
+- [x] add serach movie
 - [ ] add pagination
 - [ ] add custom font
 - [ ] use `progressive web apps`

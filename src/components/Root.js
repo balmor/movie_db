@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, browserHistory } from 'react-router-dom';
 
 import Header from './Header';
 import MoviesList from './MoviesList';
@@ -14,7 +14,7 @@ class Root extends React.Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter history={browserHistory}>
         <React.Fragment>
           <Header subtitle={this.state.subtitle} />
           <div className="container">

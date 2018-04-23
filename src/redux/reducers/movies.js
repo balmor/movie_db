@@ -60,7 +60,7 @@ export function movie(state = defaultStateItem, action) {
 
 export function search(state = defaultStateItems, action) {
   switch (action.type) {
-    case 'FETCH_DATA_LOADING':
+    case 'FETCH_SEARCH_LOADING':
       return {
         ...state,
         isLoading: true,
@@ -74,7 +74,7 @@ export function search(state = defaultStateItems, action) {
       totalPages: action.totalPages,
       totalResults: action.totalResults
     }
-    case 'FETCH_DATA_FAILED':
+    case 'FETCH_SEARCH_FAILED':
       return {
         ...state,
         isLoading: false,
