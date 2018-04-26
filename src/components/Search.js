@@ -12,7 +12,7 @@ import { settings } from '../services/ApiSettings';
 class Search extends React.Component {
   state = {
     queryText: '',
-    page: null
+    page: this.props.currentPage
   }
 
   handleSearchInput = (e) => {
@@ -30,15 +30,15 @@ class Search extends React.Component {
     }
   }
 
-  handlePage = (setPage) => (e) => {
-    e.preventDefault()
+  handlePage = (e) => {
+    console.log('currentPage', this.state);
+    //e.preventDefault()
     //const {queryText} = this.state;
+  //   this.setState(prevState => {
+  //     return {page: prevState.page + 1}
+  //  })
 
-    this.setState({
-      page: setPage + 1
-    })
-
-    console.log('currentPage', setPage);
+    console.log('currentPage', this.props.currentPage);
   }
 
   render() {
@@ -63,7 +63,7 @@ class Search extends React.Component {
             <p className="pagination__currentPage">
               {currentPage}
             </p>
-            <button className="pagination__button button" onClick={this.handlePage(currentPage)}>
+            <button className="pagination__button button" onClick={this.handlePage}>
               next
             </button>
             <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
