@@ -69,11 +69,15 @@ export function search(state = defaultStateItems, action) {
     return {
       ...state,
       isLoading: false,
-      items: action.items,
-      currentPage: action.currentPage,
-      totalPages: action.totalPages,
-      totalResults: action.totalResults
+      items: action.items
     }
+    case 'FETCH_PAGINATION':
+      return {
+        ...state,
+        currentPage: action.currentPage,
+        totalPages: action.totalPages,
+        totalResults: action.totalResults
+      }
     case 'FETCH_SEARCH_FAILED':
       return {
         ...state,

@@ -11,7 +11,8 @@ import { settings } from '../services/ApiSettings';
 
 class Search extends React.Component {
   state = {
-    queryText: ''
+    queryText: '',
+    page: null
   }
 
   handleSearchInput = (e) => {
@@ -25,13 +26,23 @@ class Search extends React.Component {
     const {queryText} = this.state;
 
     if (queryText !== '') {
-      this.props.fetchSearch(queryText);
+      this.props.fetchSearch(queryText, 3);
     }
+  }
+
+  handlePage = (page) => {
+    //const {queryText} = this.state;
+
+
+
+    console.log('currentPage', page);
   }
 
   render() {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
+
+    console.log(this.props);
 
     return (
       <React.Fragment>
@@ -42,7 +53,16 @@ class Search extends React.Component {
         {isLoading && <ThreeBounce className="spinner" size={50} color="#01d277" />}
 
         {totalResults > 0 &&
-          <div className="search__results">
+          <div className="pagination">
+            <button className="pagination__button button">
+              prev
+            </button>
+            <p className="pagination__currentPage">
+              {currentPage}
+            </p>
+            <button className="pagination__button button" onClick={this.handlePage}>
+              next
+            </button>
             <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
           </div>
         }
@@ -76,7 +96,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSearch: (query) => dispatch(searchData(query))
+    fetchSearch: (query, page) => dispatch(searchData(query, page))
   }
 }
 

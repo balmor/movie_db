@@ -47,10 +47,16 @@ export function fetchDataFailed(isFailed = null) {
   }
 }
 
-export function fetchSearchSuccess(items = [], currentPage = 0, totalPages = 0, totalResults = 0) {
+export function fetchSearchSuccess(items = []) {
   return {
     type: 'FETCH_SEARCH_SUCCESS',
-    items,
+    items
+  }
+}
+
+export function fetchPagination(currentPage = 0, totalPages = 0, totalResults = 0) {
+  return {
+    type: 'FETCH_PAGINATION',
     currentPage,
     totalPages,
     totalResults
@@ -99,8 +105,6 @@ export function getData(id) {
       } else {
         dispatch(fetchDataFailed(settings.error));
       }
-
-      //dispatch(fetchDataFailed(settings.error));
     })
   }
 }
@@ -118,7 +122,8 @@ export function searchData(query, page = 1) {
       }
     })
     .then(res => {
-      dispatch(fetchSearchSuccess(res.data.results, res.data.page, res.data.total_pages, res.data.total_results))
+      dispatch(fetchSearchSuccess(res.data.results))
+      dispatch(fetchPagination(res.data.page, res.data.total_pages, res.data.total_results))
     })
     .catch(error => {
       const statusMessage = error.response.data.errors;

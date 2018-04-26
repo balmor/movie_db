@@ -1,0 +1,22 @@
+// Search
+.pagination {
+
+  &__button {
+    display: inline-block;
+    cursor: pointer;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+
+  &__currentPage {
+    display: inline-block;
+    color: white;
+    background: $light-blue;
+    width: $xl-size;
+    text-align: center;
+    padding: $s-size 0;
+    border-bottom: .3rem solid darken($light-blue, 10%);
+  }
+}
