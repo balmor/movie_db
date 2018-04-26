@@ -30,12 +30,15 @@ class Search extends React.Component {
     }
   }
 
-  handlePage = (page) => {
+  handlePage = (setPage) => (e) => {
+    e.preventDefault()
     //const {queryText} = this.state;
 
+    this.setState({
+      page: setPage + 1
+    })
 
-
-    console.log('currentPage', page);
+    console.log('currentPage', setPage);
   }
 
   render() {
@@ -60,7 +63,7 @@ class Search extends React.Component {
             <p className="pagination__currentPage">
               {currentPage}
             </p>
-            <button className="pagination__button button" onClick={this.handlePage}>
+            <button className="pagination__button button" onClick={this.handlePage(currentPage)}>
               next
             </button>
             <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
