@@ -10,9 +10,21 @@ import { searchData } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class Search extends React.Component {
+  static defaultProps = {
+    test: 'Test default'
+  };
+
   state = {
     queryText: '',
-    page: this.props.currentPage
+    testing: this.props.test,
+    page: 1
+  }
+
+  componentWillReceiveProps(props) {
+    console.log('Will receive props', props)
+    this.setState({
+      page: props.currentPage
+    })
   }
 
   handleSearchInput = (e) => {
@@ -26,26 +38,31 @@ class Search extends React.Component {
     const {queryText} = this.state;
 
     if (queryText !== '') {
-      this.props.fetchSearch(queryText, 3);
+      this.props.fetchSearch(queryText);
     }
   }
 
   handlePage = (e) => {
-    console.log('currentPage', this.state);
+    console.log('before set state currentPage', this.state.page);
     //e.preventDefault()
     //const {queryText} = this.state;
-  //   this.setState(prevState => {
-  //     return {page: prevState.page + 1}
-  //  })
 
-    console.log('currentPage', this.props.currentPage);
+    this.setState({
+      page: this.state.page + 1
+    })
+
+    console.log('before fetch currentPage', this.state.page);
+
+    //this.props.fetchSearch(this.state.queryText, this.state.page);
+
+    console.log('after fetch currentPage', this.state.page);
   }
 
   render() {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
-    console.log(this.props);
+    //console.log(this.props);
 
     return (
       <React.Fragment>
