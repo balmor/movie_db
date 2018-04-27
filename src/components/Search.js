@@ -16,7 +16,6 @@ class Search extends React.Component {
 
   state = {
     queryText: '',
-    testing: this.props.test,
     page: 1
   }
 
@@ -42,20 +41,21 @@ class Search extends React.Component {
     }
   }
 
-  handlePage = (e) => {
-    console.log('before set state currentPage', this.state.page);
-    //e.preventDefault()
-    //const {queryText} = this.state;
+  handlePage = (pageNumber) => (e) => {
+    const { currentPage, totalPages } = this.props
+    const nextPage = currentPage + 1
+    const prevPage = currentPage - 1
+    let destPage;
 
-    this.setState({
-      page: this.state.page + 1
-    })
+    pageNumber === 'nextPage' ? destPage = nextPage : destPage = prevPage
 
-    console.log('before fetch currentPage', this.state.page);
+    if (destPage === 0 || destPage > totalPages) {
+      return;
+    }
 
-    //this.props.fetchSearch(this.state.queryText, this.state.page);
+    console.log('pageNumber', pageNumber)
 
-    console.log('after fetch currentPage', this.state.page);
+    this.props.fetchSearch(this.state.queryText, destPage);
   }
 
   render() {
@@ -74,13 +74,13 @@ class Search extends React.Component {
 
         {totalResults > 0 &&
           <div className="pagination">
-            <button className="pagination__button button">
+            <button className="pagination__button button" onClick={this.handlePage('prevPage')}>
               prev
             </button>
             <p className="pagination__currentPage">
               {currentPage}
             </p>
-            <button className="pagination__button button" onClick={this.handlePage}>
+            <button className="pagination__button button" onClick={this.handlePage('nextPage')}>
               next
             </button>
             <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
