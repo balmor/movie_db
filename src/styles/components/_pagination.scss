@@ -4,9 +4,20 @@
   &__button {
     display: inline-block;
     cursor: pointer;
+    outline: none;
 
-    :hover {
+    &:hover {
       cursor: pointer;
+
+      &:disabled {
+        cursor: default;
+        background: $purple;
+        border-bottom: .3rem solid darken($purple, 10%);
+      }
+    }
+
+    &:disabled {
+      color: gray
     }
   }
 

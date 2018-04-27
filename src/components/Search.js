@@ -1,6 +1,7 @@
 import React from 'react';
 import Movie from './Movie';
 import SearchBox from './SearchBox';
+import Pagination from './Pagination';
 import { ThreeBounce } from 'better-react-spinkit'
 import ScrollToTop from 'react-scroll-up';
 import Failed from './Failed';
@@ -20,7 +21,6 @@ class Search extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    console.log('Will receive props', props)
     this.setState({
       page: props.currentPage
     })
@@ -41,19 +41,17 @@ class Search extends React.Component {
     }
   }
 
-  handlePage = (pageNumber) => (e) => {
-    const { currentPage, totalPages } = this.props
-    const nextPage = currentPage + 1
-    const prevPage = currentPage - 1
+  handlePage = (pageNumber) => () => {
+    const { currentPage, totalPages } = this.props;
+    const nextPage = currentPage + 1;
+    const prevPage = currentPage - 1;
     let destPage;
 
-    pageNumber === 'nextPage' ? destPage = nextPage : destPage = prevPage
+    pageNumber === 'nextPage' ? destPage = nextPage : destPage = prevPage;
 
     if (destPage === 0 || destPage > totalPages) {
       return;
     }
-
-    console.log('pageNumber', pageNumber)
 
     this.props.fetchSearch(this.state.queryText, destPage);
   }
@@ -62,33 +60,25 @@ class Search extends React.Component {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
-    //console.log(this.props);
-
     return (
       <React.Fragment>
-        <SearchBox handleSearchInput={this.handleSearchInput} handleSearchSubmit={this.handleSearchSubmit} />
+        <SearchBox
+          handleSearchInput={this.handleSearchInput}
+          handleSearchSubmit={this.handleSearchSubmit}
+        />
+
+        <Pagination
+          handlePrevPage={this.handlePage('prevPage')}
+          handleNextPage={this.handlePage('nextPage')}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalResults={totalResults}
+        />
 
         {isFailed && <Failed isError={isFailed} />}
 
-        {isLoading && <ThreeBounce className="spinner" size={50} color="#01d277" />}
-
-        {totalResults > 0 &&
-          <div className="pagination">
-            <button className="pagination__button button" onClick={this.handlePage('prevPage')}>
-              prev
-            </button>
-            <p className="pagination__currentPage">
-              {currentPage}
-            </p>
-            <button className="pagination__button button" onClick={this.handlePage('nextPage')}>
-              next
-            </button>
-            <p>Total results: {totalResults} <span className="search__results--sep">|</span> Current page: {currentPage} <span className="search__results--sep">|</span> Total pages: {totalPages}</p>
-          </div>
-        }
-
-        {totalResults === 0 && <p>There is no results</p>}
-
+        {isLoading ?
+        <ThreeBounce className="spinner" size={50} color="#01d277" /> :
         <div className="movies">
           {results.map((movie) => (
             <Movie
@@ -100,6 +90,15 @@ class Search extends React.Component {
             />
           ))}
         </div>
+        }
+
+        <Pagination
+          handlePrevPage={this.handlePage('prevPage')}
+          handleNextPage={this.handlePage('nextPage')}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalResults={totalResults}
+        />
 
         <ScrollToTop showUnder={160} style={{right: 200}}>
           <i className="scroll-up"></i>
