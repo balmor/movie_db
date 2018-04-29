@@ -2,19 +2,17 @@ import React from 'react';
 import Movie from './Movie';
 import SearchBox from './SearchBox';
 import Pagination from './Pagination';
+import Notification from './Notification';
+import Failed from './Failed';
+
 import { ThreeBounce } from 'better-react-spinkit'
 import ScrollToTop from 'react-scroll-up';
-import Failed from './Failed';
 
 import { connect } from 'react-redux';
 import { searchData } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class Search extends React.Component {
-  static defaultProps = {
-    test: 'Test default'
-  };
-
   state = {
     queryText: '',
     page: 1
@@ -63,6 +61,12 @@ class Search extends React.Component {
         <SearchBox
           handleSearchInput={this.handleSearchInput}
           handleSearchSubmit={this.handleSearchSubmit}
+        />
+
+        <Notification 
+          currentPage={currentPage}
+          totalPages={totalPages}
+          totalResults={totalResults}
         />
 
         <Pagination
@@ -116,6 +120,5 @@ const mapDispatchToProps = (dispatch) => {
     fetchSearch: (query, page) => dispatch(searchData(query, page))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);
