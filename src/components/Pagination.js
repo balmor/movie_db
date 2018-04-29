@@ -4,13 +4,16 @@ import PropTypes  from 'prop-types';
 const Pagination = (props) => {
   const prevDisabled = props.currentPage === 1,
         nextDisabled = props.currentPage === props.totalPages,
-        hasResults = props.totalResults > 0,
-        noResults = props.totalResults === 0;
+        hasResults = props.totalResults > 1,
+        noResults = props.totalResults < 1;
 
   return (
     <React.Fragment>
       {hasResults &&
       <div className="pagination">
+        <button className="pagination__button button" onClick={props.handlePrevPage} disabled={prevDisabled}>
+          {props.first}
+        </button>
         <button className="pagination__button button" onClick={props.handlePrevPage} disabled={prevDisabled}>
           {props.prev}
         </button>
@@ -20,7 +23,16 @@ const Pagination = (props) => {
         <button className="pagination__button button" onClick={props.handleNextPage} disabled={nextDisabled}>
           {props.next}
         </button>
-        <p>Total results: {props.totalResults} <span className="search__results--sep">|</span> Current page: {props.currentPage} <span className="search__results--sep">|</span> Total pages: {props.totalPages}</p>
+        <button className="pagination__button button" onClick={props.handleNextPage} disabled={nextDisabled}>
+          {props.last}
+        </button>
+        <p>
+          Total results: {props.totalResults}
+          <span className="search__results--sep">|</span>
+          Current page: {props.currentPage}
+          <span className="search__results--sep">|</span>
+          Total pages: {props.totalPages}
+        </p>
       </div>
       }
 
@@ -39,7 +51,9 @@ Pagination.propTypes = {
 
 Pagination.defaultProps = {
   prev: 'prev',
-  next: 'next'
+  next: 'next',
+  first: 'first',
+  last: 'last'
 }
 
 export default Pagination;

@@ -43,11 +43,9 @@ class Search extends React.Component {
 
   handlePage = (pageNumber) => () => {
     const { currentPage, totalPages } = this.props;
-    const nextPage = currentPage + 1;
-    const prevPage = currentPage - 1;
     let destPage;
 
-    pageNumber === 'nextPage' ? destPage = nextPage : destPage = prevPage;
+    pageNumber === 'nextPage' ? destPage = currentPage + 1 : destPage = currentPage - 1;
 
     if (destPage === 0 || destPage > totalPages) {
       return;
