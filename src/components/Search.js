@@ -39,19 +39,6 @@ class Search extends React.Component {
     }
   }
 
-  handlePage = (pageNumber) => () => {
-    const { currentPage, totalPages } = this.props;
-    let destPage;
-
-    pageNumber === 'nextPage' ? destPage = currentPage + 1 : destPage = currentPage - 1;
-
-    if (destPage === 0 || destPage > totalPages) {
-      return;
-    }
-
-    this.props.fetchSearch(this.state.queryText, destPage);
-  }
-
   render() {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
@@ -63,15 +50,15 @@ class Search extends React.Component {
           handleSearchSubmit={this.handleSearchSubmit}
         />
 
-        <Notification 
+        <Notification
           currentPage={currentPage}
           totalPages={totalPages}
           totalResults={totalResults}
         />
 
         <Pagination
-          handlePrevPage={this.handlePage('prevPage')}
-          handleNextPage={this.handlePage('nextPage')}
+          fetchSearch={this.props.fetchSearch}
+          query={this.state.queryText}
           currentPage={currentPage}
           totalPages={totalPages}
           totalResults={totalResults}
@@ -95,8 +82,6 @@ class Search extends React.Component {
         }
 
         <Pagination
-          handlePrevPage={this.handlePage('prevPage')}
-          handleNextPage={this.handlePage('nextPage')}
           currentPage={currentPage}
           totalPages={totalPages}
           totalResults={totalResults}
