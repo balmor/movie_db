@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import configureStore from './redux/store/configureStore';
 
 import Root from './components/Root'
-// import './styles/styles.scss'
-// import 'normalize.css/normalize.css';
+import './styles/styles.scss'
+import 'normalize.css/normalize.css';
 
 const store = configureStore();
 

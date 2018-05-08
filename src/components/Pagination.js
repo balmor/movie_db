@@ -4,14 +4,11 @@ import PropTypes  from 'prop-types';
 const Pagination = (props) => {
   const prevDisabled = props.currentPage === 1,
         nextDisabled = props.currentPage === props.totalPages,
-        hasResults = props.totalResults > 1,
-        buttons = [],
-        qtyButtons = 3;
+        hasResults = props.totalResults > 1;
 
   const handlePage = (pageNumber) => () => {
     const { currentPage, totalPages, query, fetchSearch } = props;
-
-    let destPage = (function(pageNumber) {
+    const destPage = (function() {
       switch(pageNumber) {
         case 'firstPage':
           return 1;
@@ -24,7 +21,7 @@ const Pagination = (props) => {
         default:
           return null;
       }
-    })(pageNumber)
+    })()
 
     if (destPage === 0 || destPage > totalPages) {
       return;
@@ -32,36 +29,41 @@ const Pagination = (props) => {
 
     fetchSearch(query, destPage);
   }
-  
+
   const destinationPage = (pageNumber) => () => {
-    const { currentPage, totalPages, query, fetchSearch } = props;
+    const { query, fetchSearch } = props;
 
     fetchSearch(query, pageNumber);
   }
 
-  const createButton = () => {
+  const createButtons = () => {
     const { currentPage, totalPages } = props;
-    
-    let destPage;
-    if (currentPage < 3) {
-      destPage = 1
-    } else if (currentPage === 2) {
-      destPage = 1
-    } else {
-      destPage = currentPage - 2
+    let item, items = [];
+    const destPage = (function() {
+      switch(true) {
+        case (currentPage < 3 || currentPage === 2):
+          return 0;
+        case (currentPage === totalPages):
+          return currentPage - 5;
+        case (currentPage + 1 === totalPages):
+          return currentPage - 4;
+        default:
+          return currentPage - 3;
+      }
+    })()
+
+    for ( let i = destPage + 1; i < destPage + 6; i++ ) {
+      item = i ===  currentPage ?
+      (<p key={i} className="pagination__currentPage">{i}</p>) :
+      (<button key={i} className="pagination__button button" onClick={destinationPage(i)}>{i}</button>);
+      if (i > totalPages) {
+        break;
+      }
+
+      items.push(item)
     }
 
-    for ( let i = destPage; i < destPage + 4; i++ ) {
-      buttons.push(
-        <button key={i + 1} className="pagination__button button" onClick={destinationPage(i + 1)}>
-          {i + 1}
-        </button>
-      )
-
-      console.log(buttons)
-    }
-
-    return buttons;
+    return items;
   }
 
   return (
@@ -74,10 +76,7 @@ const Pagination = (props) => {
         <button className="pagination__button button" onClick={handlePage('prevPage')} disabled={prevDisabled}>
           {props.prev}
         </button>
-        {createButton()}
-        <p className="pagination__currentPage">
-          {props.currentPage}
-        </p>
+        {createButtons()}
         <button className="pagination__button button" onClick={handlePage('nextPage')} disabled={nextDisabled}>
           {props.next}
         </button>
