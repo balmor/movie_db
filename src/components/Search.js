@@ -18,12 +18,6 @@ class Search extends React.Component {
     page: 1
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({
-      page: props.currentPage
-    })
-  }
-
   handleSearchInput = (e) => {
     this.setState({
       queryText: e.target.value
@@ -42,6 +36,7 @@ class Search extends React.Component {
   render() {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
+    console.log(this.state.queryText === '')
 
     return (
       <React.Fragment>
@@ -50,42 +45,51 @@ class Search extends React.Component {
           handleSearchSubmit={this.handleSearchSubmit}
         />
 
-        <Notification
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalResults={totalResults}
-        />
-
-        <Pagination
-          fetchSearch={this.props.fetchSearch}
-          query={this.state.queryText}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalResults={totalResults}
-        />
-
-        {isFailed && <Failed isError={isFailed} />}
-
-        {isLoading ?
-        <ThreeBounce className="spinner" size={50} color="#01d277" /> :
-        <div className="movies">
-          {results.map((movie) => (
-            <Movie
-              key={movie.id}
-              movieId={movie.id}
-              movieTitle={movie.title}
-              moviePoster={movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`: undefined}
-              movieLink={`/movie/${movie.id}`}
+        {this.state.queryText !== '' ?
+          <React.Fragment>
+            <Notification
+            currentPage={currentPage}
+            totalPages={totalPages}
+            totalResults={totalResults}
             />
-          ))}
-        </div>
-        }
 
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          totalResults={totalResults}
-        />
+            <Pagination
+              fetchSearch={this.props.fetchSearch}
+              query={this.state.queryText}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalResults={totalResults}
+            />
+
+
+
+            {isFailed && <Failed isError={isFailed} />}
+
+            {isLoading ?
+            <ThreeBounce className="spinner" size={50} color="#01d277" /> :
+            <div className="movies">
+              {results.map((movie) => (
+                <Movie
+                  key={movie.id}
+                  movieId={movie.id}
+                  movieTitle={movie.title}
+                  moviePoster={movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`: undefined}
+                  movieLink={`/movie/${movie.id}`}
+                />
+              ))}
+            </div>
+            }
+
+            <Pagination
+              fetchSearch={this.props.fetchSearch}
+              query={this.state.queryText}
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalResults={totalResults}
+            />
+          </React.Fragment>:
+          ''
+        }
 
         <ScrollToTop showUnder={160} style={{right: 200}}>
           <i className="scroll-up"></i>

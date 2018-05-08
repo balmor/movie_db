@@ -1,7 +1,9 @@
 // Movies
 .movies {
   color: $off-white;
-  padding: 0 0 $xl-size 0;
+  &--space {
+    padding: 0 0 $xl-size 0;
+  }
 
   &__box {
     background: $light-blue;

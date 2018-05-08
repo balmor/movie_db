@@ -17,7 +17,6 @@ class MovieDetail extends React.Component {
 
   render() {
     const movie = this.props.movie;
-    //console.log('props', this.props);
     const tmdbPoster = movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}` : tmdbSquare;
 
     if (this.props.isLoading) {
@@ -34,7 +33,7 @@ class MovieDetail extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="movies">
+        <div className="movies--space">
           <div className="movies__box movies__box--detail">
             <img
               className="movies__poster"
