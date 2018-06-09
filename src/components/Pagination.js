@@ -92,7 +92,9 @@ const Pagination = (props) => {
 Pagination.propTypes = {
   currentPage: PropTypes.number,
   totalPages: PropTypes.number,
-  totalResults: PropTypes.number
+  totalResults: PropTypes.number,
+  query: PropTypes.string,
+  fetchSearch: PropTypes.func
 }
 
 Pagination.defaultProps = {

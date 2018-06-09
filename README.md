@@ -26,6 +26,7 @@ yarn build
 - [x] create new fetch for single movie
 - [x] failed fetching as component
 - [x] add serach movie
-- [ ] add pagination
-- [ ] add custom font
+- [x] add pagination
+- [x] fix back to homepage component
+- [x] add custom font
 - [ ] use `progressive web apps`
