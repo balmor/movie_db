@@ -5,13 +5,18 @@ import tmdbSquare from '../../public/images/tmdb-square.svg';
 
 const Movie = (props) => (
   <div className="movies__box">
-    <img
+    <Link to={props.movieLink}><img
       className="movies__poster"
       src={props.moviePoster}
       alt={props.movieTitle}
-    />
+    /></Link>
     <h2 className="movies__title">{props.movieTitle}</h2>
     <Link className="button" to={props.movieLink}>view</Link>
+
+    <button
+      className="button icon-magnifier icons"
+      onChange={props.handleMovieId}
+    >detail</button>
   </div>
 )
 

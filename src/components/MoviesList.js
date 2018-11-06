@@ -14,6 +14,11 @@ class MoviesList extends React.Component {
     this.props.getLatestMoviesFetch();
   }
 
+  handleMovieId = (e) => {
+    e.preventDefault();
+    console.log('click works');
+  }
+
   render() {
     const results = this.props.movies;
 
@@ -28,13 +33,16 @@ class MoviesList extends React.Component {
     return (
       <div className="movies">
         {results.map((movie) => (
-          <Movie
-            key={movie.id}
-            movieId={movie.id}
-            movieTitle={movie.title}
-            moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
-            movieLink={`/movie/${movie.id}`}
-          />
+          <div key={movie.id}>
+            <Movie
+              key={movie.id}
+              movieId={movie.id}
+              movieTitle={movie.title}
+              moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
+              movieLink={`/movie/${movie.id}`}
+              handleMovieId={this.handleMovieId}
+            />
+          </div>
         ))}
         <ScrollToTop showUnder={160} style={{right: 200}}>
           <i className="scroll-up"></i>

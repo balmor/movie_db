@@ -22,6 +22,12 @@
   &__poster {
     width: $xxl-size;
     border: .3rem solid $blue;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+      box-shadow: .6rem #888888;
+      opacity: .8;
+    }
   }
 
   &__title {

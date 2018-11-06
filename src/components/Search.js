@@ -36,7 +36,6 @@ class Search extends React.Component {
   render() {
     const results = this.props.items;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
-    console.log(this.state.queryText === '')
 
     return (
       <React.Fragment>
