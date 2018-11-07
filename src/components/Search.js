@@ -9,7 +9,7 @@ import { ThreeBounce } from 'better-react-spinkit'
 import ScrollToTop from 'react-scroll-up';
 
 import { connect } from 'react-redux';
-import { searchData } from '../redux/actions/movies';
+import { searchData, getData } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class Search extends React.Component {
@@ -33,9 +33,17 @@ class Search extends React.Component {
     }
   }
 
+  handleMovieId = (movieId) => () => {
+    this.props.getSingleMovieFetch(movieId);
+  }
+
   render() {
     const results = this.props.items;
+    const detail = this.props.movie;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
+
+    console.log('props', this.props);
+
 
     return (
       <React.Fragment>
@@ -74,6 +82,9 @@ class Search extends React.Component {
                   movieTitle={movie.title}
                   moviePoster={movie.poster_path ? `${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`: undefined}
                   movieLink={`/movie/${movie.id}`}
+                  handleMovieId={this.handleMovieId(movie.id)}
+                  moreDetails={true}
+                  status={detail.id === movie.id ? detail.status : undefined}
                 />
               ))}
             </div>
@@ -100,12 +111,13 @@ class Search extends React.Component {
 
 const mapStateToProps = (state) => {
   const { items, totalResults, totalPages, currentPage, isLoading, isFailed } = state.search;
-  return { items, totalResults, totalPages, currentPage, isLoading, isFailed }
+  return { items, totalResults, totalPages, currentPage, isLoading, isFailed, movie: state.movie.item }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchSearch: (query, page) => dispatch(searchData(query, page))
+    fetchSearch: (query, page) => dispatch(searchData(query, page)),
+    getSingleMovieFetch: (id) => dispatch(getData(id)),
   }
 }
 

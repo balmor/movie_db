@@ -14,11 +14,6 @@ class MoviesList extends React.Component {
     this.props.getLatestMoviesFetch();
   }
 
-  handleMovieId = (e) => {
-    e.preventDefault();
-    console.log('click works');
-  }
-
   render() {
     const results = this.props.movies;
 
@@ -40,7 +35,6 @@ class MoviesList extends React.Component {
               movieTitle={movie.title}
               moviePoster={`${settings.baseImageUrl}${settings.imageSize}${movie.poster_path}`}
               movieLink={`/movie/${movie.id}`}
-              handleMovieId={this.handleMovieId}
             />
           </div>
         ))}
