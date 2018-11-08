@@ -15,7 +15,8 @@ import { settings } from '../services/ApiSettings';
 class Search extends React.Component {
   state = {
     queryText: '',
-    page: 1
+    page: 1,
+    collection: [],
   }
 
   handleSearchInput = (e) => {
@@ -35,15 +36,23 @@ class Search extends React.Component {
 
   handleMovieId = (movieId) => () => {
     this.props.getSingleMovieFetch(movieId);
+
+    this.setState((prevState) => {
+      return {
+        collection: [ ...prevState.collection, this.props.movie ]
+      }
+    })
   }
 
   render() {
     const results = this.props.items;
     const detail = this.props.movie;
+    const { collection } = this.state
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
-    console.log('props', this.props);
-
+    //console.log('props', this.props);
+    console.log('state collection', collection.map((movie) => movie.id));
+    console.log('includes', collection)
 
     return (
       <React.Fragment>
