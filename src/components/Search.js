@@ -37,7 +37,11 @@ class Search extends React.Component {
   handleMovieId = (movieId) => () => {
     this.props.getSingleMovieFetch(movieId);
 
-    this.setState((prevState) => {
+    const exist = this.state.collection.find(x => x.id === movieId) != undefined;
+
+    console.log('exist', exist);
+
+    !exist && this.setState((prevState) => {
       return {
         collection: [ ...prevState.collection, this.props.movie ]
       }
@@ -47,12 +51,12 @@ class Search extends React.Component {
   render() {
     const results = this.props.items;
     const detail = this.props.movie;
-    const { collection } = this.state
+    const { collection } = this.state;
     const {totalResults, currentPage, totalPages, isLoading, isFailed} = this.props;
 
     //console.log('props', this.props);
-    console.log('state collection', collection.map((movie) => movie.id));
-    console.log('includes', collection)
+    //console.log('state collection', collection.map((movie) => movie.id));
+    //console.log('includes', collection)
 
     return (
       <React.Fragment>
@@ -94,6 +98,7 @@ class Search extends React.Component {
                   handleMovieId={this.handleMovieId(movie.id)}
                   moreDetails={true}
                   status={detail.id === movie.id ? detail.status : undefined}
+                  details={collection}
                 />
               ))}
             </div>

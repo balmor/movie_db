@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import tmdbSquare from '../../public/images/tmdb-square.svg';
 
 const Movie = (props) => {
+  const collect = props.details;
+  console.log('prop children', props.details)
 
   const ButtonDetail = () => {
     return (
@@ -15,9 +17,18 @@ const Movie = (props) => {
   }
 
   const MovieData = () => {
+
+    const avarage = collect.find(x => x.id === props.movieId);
+
+    const voteAverage = avarage && `Vote average: ${avarage.vote_average}`;
+    const status = props.status && `Status: ${props.status}`;
+
+    //console.log('avarage', voteAverage)
+
     return (
       <div className="movies__data">
-        {`${props.status ? 'Status: ' + props.status : ''}`}
+        <p>{status}</p>
+        <p>{voteAverage}</p>
       </div>
     )
   }
@@ -48,6 +59,7 @@ Movie.propTypes = {
   movieLink: PropTypes.string.isRequired,
   handleMovieId: PropTypes.func,
   moreDetails: PropTypes.bool,
+  details: PropTypes.array,
 }
 
 Movie.defaultProps = {
