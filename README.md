@@ -29,4 +29,5 @@ yarn build
 - [x] add pagination
 - [x] fix back to homepage component
 - [x] add custom font
+- [ ] use REDUX SAGA
 - [ ] use `progressive web apps`
