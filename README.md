@@ -11,7 +11,7 @@ yarn install
 
 Use webpack-dev-server for local development:
 ```
-yarn dev
+yarn start
 ```
 
 Build the app:
@@ -29,5 +29,5 @@ yarn build
 - [x] add pagination
 - [x] fix back to homepage component
 - [x] add custom font
-- [ ] use REDUX SAGA
-- [ ] use `progressive web apps`
+- [x] use REDUX SAGA
+= [ ] fix error handling

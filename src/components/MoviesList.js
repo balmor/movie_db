@@ -5,13 +5,13 @@ import ScrollToTop from 'react-scroll-up';
 import Failed from './Failed';
 
 import { connect } from 'react-redux';
-import { getData } from '../redux/actions/movies';
+import { fetchDataLoading } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class MoviesList extends React.Component {
 
   componentDidMount() {
-    this.props.getLatestMoviesFetch();
+    this.props.fetchDataLoading();
   }
 
   render() {
@@ -55,10 +55,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getLatestMoviesFetch: () => dispatch(getData())
-  };
+const mapDispatchToProps = {
+  fetchDataLoading,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

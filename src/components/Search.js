@@ -9,10 +9,10 @@ import { ThreeBounce } from 'better-react-spinkit'
 import ScrollToTop from 'react-scroll-up';
 
 import { connect } from 'react-redux';
-import { searchData, getData } from '../redux/actions/movies';
+import { fetchSearchLoading } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
-class Search extends React.Component {
+class SagaSearch extends React.Component {
   state = {
     queryText: '',
     page: 1,
@@ -30,7 +30,7 @@ class Search extends React.Component {
     const {queryText} = this.state;
 
     if (queryText !== '') {
-      this.props.fetchSearch(queryText);
+      this.props.fetchSearchLoading(queryText);
     }
   }
 
@@ -73,7 +73,7 @@ class Search extends React.Component {
             />
 
             <Pagination
-              fetchSearch={this.props.fetchSearch}
+              fetchSearch={this.props.fetchSearchLoading}
               query={this.state.queryText}
               currentPage={currentPage}
               totalPages={totalPages}
@@ -124,11 +124,8 @@ const mapStateToProps = (state) => {
   return { items, totalResults, totalPages, currentPage, isLoading, isFailed, movie: state.movie.item }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchSearch: (query, page) => dispatch(searchData(query, page)),
-    getSingleMovieFetch: (id) => dispatch(getData(id)),
-  }
-}
+const mapDispatchToProps = {
+  fetchSearchLoading,
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(SagaSearch);

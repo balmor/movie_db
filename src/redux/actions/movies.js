@@ -33,10 +33,10 @@ export function fetchSingleDataSuccess(item = {}) {
   }
 }
 
-export function fetchDataLoading(isLoading = false) {
+export function fetchDataLoading(id) {
   return {
     type: 'FETCH_DATA_LOADING',
-    isLoading
+    id
   }
 }
 
@@ -47,6 +47,7 @@ export function fetchDataFailed(isFailed = null) {
   }
 }
 
+//// SEARCH actions
 export function fetchSearchSuccess(items = []) {
   return {
     type: 'FETCH_SEARCH_SUCCESS',
@@ -63,10 +64,11 @@ export function fetchPagination(currentPage = 0, totalPages = 0, totalResults = 
   }
 }
 
-export function fetchSearchLoading(isLoading = false) {
+export function fetchSearchLoading(query, page) {
   return {
     type: 'FETCH_SEARCH_LOADING',
-    isLoading
+    query,
+    page
   }
 }
 
@@ -77,10 +79,7 @@ export function fetchSearchFailed(isFailed = null) {
   }
 }
 
-export function getData(id) {
-  return (dispatch) => {
-    dispatch(fetchDataLoading(true))
-
+export function getMovies({ id }) {
     let properUrl;
 
     if (id) {
@@ -89,31 +88,14 @@ export function getData(id) {
       properUrl = settings.topRated
     }
 
-    tmdb
+  return tmdb
     .get(properUrl)
-    .then(res => {
-      if (id) {
-        dispatch(fetchSingleDataSuccess(res.data))
-      } else {
-        dispatch(fetchDataSuccess(res.data.results))
-      }
-    })
-    .catch(error => {
-      const statusMessage = error.response.data.status_message;
-      if (statusMessage) {
-        dispatch(fetchDataFailed(statusMessage));
-      } else {
-        dispatch(fetchDataFailed(settings.error));
-      }
-    })
-  }
+    .then(res => res)
+    .catch(error => ({ error }))
 }
 
-export function searchData(query, page = 1) {
-  return (dispatch) => {
-    dispatch(fetchSearchLoading(true))
-
-    tmdb
+export function searchSaga({ query, page = 1 }) {
+  return tmdb
     .get(settings.searchMovie, {
       params: {
         query,
@@ -121,17 +103,6 @@ export function searchData(query, page = 1) {
         include_adult: false
       }
     })
-    .then(res => {
-      dispatch(fetchSearchSuccess(res.data.results))
-      dispatch(fetchPagination(res.data.page, res.data.total_pages, res.data.total_results))
-    })
-    .catch(error => {
-      const statusMessage = error.response.data.errors;
-      if (statusMessage) {
-        dispatch(fetchSearchFailed(statusMessage));
-      } else {
-        dispatch(fetchSearchFailed(settings.error));
-      }
-    })
-  }
+    .then(res => res)
+    .catch(error => ({ error }))
 }

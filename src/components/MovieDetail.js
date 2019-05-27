@@ -5,14 +5,14 @@ import Failed from './Failed';
 import tmdbSquare from '../../public/images/tmdb-square.svg';
 
 import { connect } from 'react-redux';
-import { getData } from '../redux/actions/movies';
+import { fetchDataLoading } from '../redux/actions/movies';
 import { settings } from '../services/ApiSettings';
 
 class MovieDetail extends React.Component {
 
   componentDidMount() {
     const id = this.props.match.params.movieId;
-    this.props.getSingleMovieFetch(id);
+    this.props.fetchDataLoading(id);
   }
 
   render() {
@@ -58,10 +58,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getSingleMovieFetch: (id) => dispatch(getData(id)),
-  };
+const mapDispatchToProps = {
+  fetchDataLoading,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MovieDetail);
