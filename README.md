@@ -1,6 +1,6 @@
 # Movie List React app
 
-Frontend application using [The Movie Database API](https://developers.themoviedb.org). Built with React.
+Frontend application using [The Movie Database API](https://developers.themoviedb.org). Built with React + Redux Saga.
 
 ## Getting Started
 
@@ -30,4 +30,4 @@ yarn build
 - [x] fix back to homepage component
 - [x] add custom font
 - [x] use REDUX SAGA
-= [ ] fix error handling
+- [ ] fix error handling
