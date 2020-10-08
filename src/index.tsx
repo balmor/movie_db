@@ -9,6 +9,6 @@ const App: FC<{test: string}> = ({ test }) => (
 );
 
 ReactDOM.render(
-  <App test="test" />,
+  <App test="foo" />,
   document.getElementById("app")
 );

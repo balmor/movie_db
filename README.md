@@ -30,4 +30,4 @@ yarn build
 - [x] fix back to homepage component
 - [x] add custom font
 - [ ] use React Hooks
-= [ ] add typescript
+- [ ] add typescript
