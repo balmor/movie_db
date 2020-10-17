@@ -4,9 +4,6 @@ import settings from '../api/config';
 import { IState } from '../reducers/movies';
 
 export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes>): unknown => {
-  console.log('useMovies state', movies);
-  console.log('useMovies dispatch', dispatchMovies);
-
   useEffect(() => {
     const { api, headers, params } = settings;
     const fetchData = async () => {
@@ -14,7 +11,6 @@ export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes
       const response = await fetch(`${api.baseUrl}${api.topRated}?${params}`, { headers });
 
       const data = await response.json();
-      console.log('data', data);
 
       if (response.status === 200) {
         return dispatchMovies(success(data));
