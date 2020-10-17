@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import tmdb from './../images/tmdb.svg';
 
 type HeaderProps = {
-  title?: string,
-  subtitle?: string
-}
+  title?: string;
+  subtitle?: string;
+};
 
 const Header: FC<HeaderProps> = ({ title = 'Hooks Movies', subtitle }) => (
   <div className="header">

@@ -16,9 +16,8 @@ const App: FC = () => {
         <div className="container">
           <Suspense fallback={'loading'}>
             <NetworkErrorBoundary>
-
               <Switch>
-                <Route exact path="/" >
+                <Route exact path="/">
                   <MoviesList />
                 </Route>
                 <Route path="*">

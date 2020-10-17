@@ -1,37 +1,40 @@
 export enum MoviesType {
   REQUEST = 'REQUEST',
   SUCCESS = 'SUCCESS',
-  FAILURE = 'FAILURE'
+  FAILURE = 'FAILURE',
 }
 
 export interface RequestType {
-  type: typeof MoviesType.REQUEST,
-  response: null
+  type: typeof MoviesType.REQUEST;
+  response: null;
 }
 
 export interface SuccessType {
-  type: typeof MoviesType.SUCCESS,
-  response: SuccessResponse
+  type: typeof MoviesType.SUCCESS;
+  response: SuccessResponse;
 }
 
 export interface SuccessResponse {
-  data: { title: string }
+  data: { title: string };
 }
 
 export interface FailureType {
-  type: typeof MoviesType.FAILURE,
-  response: FailureResponse
+  type: typeof MoviesType.FAILURE;
+  response: FailureResponse;
 }
 
 export interface FailureResponse {
-  response: string
+  response: string;
 }
 
-export type MoviesActionTypes =
-  | RequestType
-  | SuccessType
-  | FailureType
+export type MoviesActionTypes = RequestType | SuccessType | FailureType;
 
 export const request = (): RequestType => ({ type: MoviesType.REQUEST, response: null });
-export const success = (response: SuccessResponse): SuccessType => ({ type: MoviesType.SUCCESS, response });
-export const failure = (response: FailureResponse): FailureType => ({ type: MoviesType.FAILURE, response });
+export const success = (response: SuccessResponse): SuccessType => ({
+  type: MoviesType.SUCCESS,
+  response,
+});
+export const failure = (response: FailureResponse): FailureType => ({
+  type: MoviesType.FAILURE,
+  response,
+});

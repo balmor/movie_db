@@ -1,15 +1,15 @@
-import { MoviesType, MoviesActionTypes , SuccessResponse, FailureResponse} from '../actions/movies';
+import { MoviesType, MoviesActionTypes, SuccessResponse, FailureResponse } from '../actions/movies';
 
 export type IState = {
-  response?: SuccessResponse | FailureResponse | null | undefined,
-  isLoading: boolean,
-  isFailed: boolean
-}
+  response?: SuccessResponse | FailureResponse | null | undefined;
+  isLoading: boolean;
+  isFailed: boolean;
+};
 
 export const initialState: IState = {
   response: null,
   isLoading: false,
-  isFailed: false
+  isFailed: false,
 };
 
 const reducer = (state: IState, action: MoviesActionTypes): IState => {

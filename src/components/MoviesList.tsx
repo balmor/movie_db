@@ -22,7 +22,7 @@ const MoviesList: React.FC = () => {
         <i className="scroll-up" />
       </ScrollToTop>
     </div>
-  )
+  );
 };
 
 export default MoviesList;

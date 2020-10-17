@@ -3,7 +3,7 @@ import { request, success, failure, MoviesActionTypes } from '../actions/movies'
 import settings from '../api/config';
 import { IState } from '../reducers/movies';
 
-export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes>) : unknown => {
+export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes>): unknown => {
   console.log('useMovies state', movies);
   console.log('useMovies dispatch', dispatchMovies);
 
@@ -25,7 +25,7 @@ export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes
       throw new Error(data.status_message);
     };
 
-    fetchData().catch(err => err);
+    fetchData().catch((err) => err);
   }, [dispatchMovies]);
 
   return movies;

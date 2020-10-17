@@ -4,12 +4,12 @@ import settings from '../../api/config';
 export default class MoviesResource extends Resource {
   static fetchOptionsPlugin = (options: RequestInit) => {
     return {
-    ...options,
+      ...options,
       headers: {
         ...options.headers,
-        ...settings.headers
+        ...settings.headers,
       },
-    }
+    };
   };
 
   pk() {
