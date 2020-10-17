@@ -20,14 +20,17 @@ yarn build
 ```
 
 ## TODO:
-- [x] use [themoviedb.org](https://developers.themoviedb.org/3/getting-started) API
-- [x] create one state in redux
-- [x] move componenetDidMount to Movies
+- [x] use API [themoviedb.org](https://developers.themoviedb.org/3/getting-started)
 - [x] create new fetch for single movie
 - [x] failed fetching as component
-- [x] add serach movie
-- [x] add pagination
-- [x] fix back to homepage component
 - [x] add custom font
+- [ ] add serach movie
+- [ ] add pagination
+- [ ] fix back to homepage component
 - [ ] use React Hooks
 - [ ] add typescript
+- [ ] use styled-components
+- [ ] add theme context light/dark
+- [ ] use webpack 5
+- [ ] add unit tests - jest
+- [ ] add e2e tests - cypress

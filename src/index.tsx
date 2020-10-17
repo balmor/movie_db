@@ -1,14 +1,11 @@
-import React, { FC } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-
-const App: FC<{test: string}> = ({ test }) => (
-  <div>
-    <h1>My React and TypeScript App!</h1>
-    <h2>{test}</h2>
-  </div>
-);
+import { CacheProvider } from 'rest-hooks';
+import App from './components/App'
 
 ReactDOM.render(
-  <App test="foo" />,
+  <CacheProvider>
+    <App />
+  </CacheProvider>,
   document.getElementById("app")
 );
