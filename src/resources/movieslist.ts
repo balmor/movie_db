@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Resource } from 'rest-hooks';
-import settings from '../../api/config';
+import settings from '../api/config';
 
 export default class MoviesResource extends Resource {
   static fetchOptionsPlugin = (options: RequestInit) => {

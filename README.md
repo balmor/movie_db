@@ -5,21 +5,25 @@ Frontend application using [The Movie Database API](https://developers.themovied
 ## Getting Started
 
 Install packages:
+
 ```
 yarn install
 ```
 
 Use webpack-dev-server for local development:
+
 ```
 yarn start
 ```
 
 Build the app:
+
 ```
 yarn build
 ```
 
 ## TODO:
+
 - [x] use API [themoviedb.org](https://developers.themoviedb.org/3/getting-started)
 - [x] create new fetch for single movie
 - [x] failed fetching as component
@@ -31,6 +35,7 @@ yarn build
 - [ ] add typescript
 - [ ] use styled-components
 - [ ] add theme context light/dark
+- [ ] add translation react-i18next
 - [ ] use webpack 5
 - [ ] add unit tests - jest
 - [ ] add e2e tests - cypress

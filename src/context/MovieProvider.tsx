@@ -7,9 +7,11 @@ interface IContextProps {
   dispatchMovies: React.Dispatch<MoviesActionTypes>;
 }
 
+export type MovieProviderProps = { children: React.ReactNode };
+
 export const MoviesContext = createContext({} as IContextProps);
 
-const MovieProvider: React.FC<{ children: React.ReactNode }> = ({ children }): JSX.Element => {
+const MovieProvider: React.FC<MovieProviderProps> = ({ children }): JSX.Element => {
   const [movies, dispatchMovies] = useReducer(reducer, initialState);
   const value = { movies, dispatchMovies };
 

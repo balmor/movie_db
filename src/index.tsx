@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CacheProvider } from 'rest-hooks';
-import App from './components/App';
+import App from './App';
 
 ReactDOM.render(
   <CacheProvider>

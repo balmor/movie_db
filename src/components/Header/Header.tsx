@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import tmdb from './../images/tmdb.svg';
+import React from 'react';
+import tmdb from './../../images/tmdb.svg';
 
-type HeaderProps = {
+export type HeaderProps = {
   title?: string;
   subtitle?: string;
 };
 
-const Header: FC<HeaderProps> = ({ title = 'Hooks Movies', subtitle }) => (
+export const Header: React.FC<HeaderProps> = ({ title = 'Hooks Movies', subtitle }) => (
   <div className="header">
     <div className="container header__wrapper">
       <div>
@@ -19,5 +19,3 @@ const Header: FC<HeaderProps> = ({ title = 'Hooks Movies', subtitle }) => (
     </div>
   </div>
 );
-
-export default Header;

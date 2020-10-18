@@ -6,35 +6,38 @@ export enum MoviesType {
 
 export interface RequestType {
   type: typeof MoviesType.REQUEST;
-  response: null;
+  data: null;
 }
 
 export interface SuccessType {
   type: typeof MoviesType.SUCCESS;
-  response: SuccessResponse;
+  data: SuccessResponse;
 }
 
 export interface SuccessResponse {
-  data: { title: string };
+  page: number;
+  results: Array<{ id: number; title: string; poster_path: string }>;
 }
 
 export interface FailureType {
   type: typeof MoviesType.FAILURE;
-  response: FailureResponse;
+  data: FailureResponse;
 }
 
 export interface FailureResponse {
-  response: string;
+  page: null;
+  results: null;
+  error: string;
 }
 
 export type MoviesActionTypes = RequestType | SuccessType | FailureType;
 
-export const request = (): RequestType => ({ type: MoviesType.REQUEST, response: null });
-export const success = (response: SuccessResponse): SuccessType => ({
+export const request = (): RequestType => ({ type: MoviesType.REQUEST, data: null });
+export const success = (data: SuccessResponse): SuccessType => ({
   type: MoviesType.SUCCESS,
-  response,
+  data,
 });
-export const failure = (response: FailureResponse): FailureType => ({
+export const failure = (data: FailureResponse): FailureType => ({
   type: MoviesType.FAILURE,
-  response,
+  data,
 });
