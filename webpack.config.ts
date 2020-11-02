@@ -13,11 +13,7 @@ const config: webpack.Configuration = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
           },
         },
       },
@@ -61,6 +57,7 @@ const config: webpack.Configuration = {
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
+    publicPath: '/',
   },
   plugins: [new Dotenv({ systemvars: true })],
   devServer: {

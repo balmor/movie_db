@@ -3,7 +3,7 @@ import { request, success, failure, MoviesActionTypes } from '../actions/movies'
 import settings from '../api/config';
 import { IState } from '../reducers/movies';
 
-export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes>): unknown => {
+export default (movies: IState, dispatchMovies: React.Dispatch<MoviesActionTypes>): IState => {
   useEffect(() => {
     const { api, headers, params } = settings;
     const fetchData = async () => {

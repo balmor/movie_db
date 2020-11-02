@@ -11,8 +11,9 @@ type Api = {
   error: string;
 };
 
-type Params = {
+export type Params = {
   language: string;
+  query?: string;
   page?: number | string;
 };
 

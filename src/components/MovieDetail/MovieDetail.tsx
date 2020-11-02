@@ -13,7 +13,11 @@ export const MovieDetail: React.FC = () => {
   type MovieTypes = {
     isLoading: boolean;
     isFailed: boolean;
-    data: { title: string; overview: string; poster_path?: string } | null;
+    data: {
+      title: string;
+      overview: string;
+      poster_path?: string;
+    } | null;
   };
 
   const { api, headers, params } = settings;

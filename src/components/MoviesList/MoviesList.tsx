@@ -4,12 +4,10 @@ import ScrollToTop from 'react-scroll-up';
 import { SwapSpinner } from 'react-spinners-kit';
 import { MoviesContext } from '../../context/MovieProvider';
 import useMovies from '../../hooks/useMovies';
-import settings from '../../api/config';
 import { Movie } from '../Movie';
 import { Failed } from '../Failed';
 
 export const MoviesList: React.FC = () => {
-  const movieImage = `${settings.api.baseImageUrl}${settings.api.imageSize}`;
   const {
     movies,
     movies: { data, isLoading, isFailed },
@@ -35,7 +33,7 @@ export const MoviesList: React.FC = () => {
           <Movie
             movieId={movie.id}
             movieTitle={movie.title}
-            moviePoster={`${movieImage}${movie.poster_path}`}
+            moviePoster={movie.poster_path}
             movieLink={`/movie/${movie.id}`}
           />
         </div>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Header } from './components/Header';
 import Routes from './routes';
 import MovieProvider from './context/MovieProvider';
+import SearchProvider from './context/SearchProvider';
 
 const App: FC = () => {
   const [subtitle] = useState('List of movies');
@@ -11,14 +12,16 @@ const App: FC = () => {
   return (
     <Router>
       <MovieProvider>
-        <Header subtitle={subtitle} />
-        <div className="container">
-          <Suspense fallback={'loading'}>
-            <NetworkErrorBoundary>
-              <Routes />
-            </NetworkErrorBoundary>
-          </Suspense>
-        </div>
+        <SearchProvider>
+          <Header subtitle={subtitle} />
+          <div className="container">
+            <Suspense fallback={'loading'}>
+              <NetworkErrorBoundary>
+                <Routes />
+              </NetworkErrorBoundary>
+            </Suspense>
+          </div>
+        </SearchProvider>
       </MovieProvider>
     </Router>
   );
