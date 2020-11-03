@@ -1,4 +1,4 @@
-import React, { FC, useState, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { NetworkErrorBoundary } from 'rest-hooks';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Header } from './components/Header';
@@ -6,7 +6,7 @@ import Routes from './routes';
 import MovieProvider from './context/MovieProvider';
 import SearchProvider from './context/SearchProvider';
 
-const App: FC = () => {
+const App: React.FC = () => {
   const [subtitle] = useState('List of movies');
 
   return (

@@ -59,7 +59,7 @@ const config: webpack.Configuration = {
     filename: 'bundle.js',
     publicPath: '/',
   },
-  plugins: [new Dotenv({ systemvars: true })],
+  plugins: [new Dotenv()],
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     compress: true,

@@ -15,7 +15,7 @@ export const Notification: React.FC<NotificationProps> = ({
     noResults = totalResults < 1;
 
   return (
-    <React.Fragment>
+    <>
       {hasResults && (
         <p>
           Total results: {totalResults}
@@ -27,6 +27,6 @@ export const Notification: React.FC<NotificationProps> = ({
       )}
 
       {noResults && <p>There is no results</p>}
-    </React.Fragment>
+    </>
   );
 };

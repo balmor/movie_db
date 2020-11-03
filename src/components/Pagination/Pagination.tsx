@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 type PaginationProps = {
   totalResults: number;

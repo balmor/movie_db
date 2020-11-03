@@ -6,10 +6,10 @@ type FailedProps = {
 };
 
 export const Failed: React.FC<FailedProps> = ({ isFailed }) => (
-  <React.Fragment>
+  <>
     <p className="failed">{isFailed}</p>
     <Link className="button" to="/">
       Back to Homepage
     </Link>
-  </React.Fragment>
+  </>
 );
