@@ -1,15 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { StyledLink } from '../Button';
+
+const StyledFailed = styled.p`
+  font-size: 2.6rem;
+  text-align: center;
+  margin: 9.6rem auto;
+`;
 
 type FailedProps = {
-  isFailed: boolean;
+  errorMessage: string | undefined;
 };
 
-export const Failed: React.FC<FailedProps> = ({ isFailed }) => (
+export const Failed: React.FC<FailedProps> = ({ errorMessage }) => (
   <>
-    <p className="failed">{isFailed}</p>
-    <Link className="button" to="/">
-      Back to Homepage
-    </Link>
+    <StyledFailed>{errorMessage}</StyledFailed>
+    <StyledLink to="/">Back to Homepage</StyledLink>
   </>
 );

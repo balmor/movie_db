@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
-import ScrollToTop from 'react-scroll-up';
-import { SwapSpinner } from 'react-spinners-kit';
 import { SearchContext } from '../../context/SearchProvider';
 import { Failed } from '../Failed';
 import { Movie } from '../Movie';
 import { SearchBox } from '../SearchBox';
 import { Notification } from '../Notification';
 import { Pagination } from '../Pagination';
+import { StyledSpinner } from '../StyledSpinner';
 
 export const Search: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -39,11 +38,12 @@ export const Search: React.FC = () => {
           <Pagination {...pages} setPageNumber={setPageNumber} />
         </>
       )}
-      {isFailed && <Failed isFailed={isFailed} />}
+
+      {isFailed && <Failed errorMessage={'Somthing went wrong'} />}
       {isLoading ? (
-        <SwapSpinner size={150} color="#01d277" />
+        <StyledSpinner />
       ) : (
-        <div className="movies">
+        <>
           {results.map((movie) => (
             <Movie
               key={movie.id}
@@ -53,11 +53,9 @@ export const Search: React.FC = () => {
               movieLink={`/movie/${movie.id}`}
             />
           ))}
-        </div>
+        </>
       )}
-      <ScrollToTop showUnder={160} style={{ right: 200 }}>
-        <i className="scroll-up"></i>
-      </ScrollToTop>
+      <Pagination {...pages} setPageNumber={setPageNumber} />
     </>
   );
 };

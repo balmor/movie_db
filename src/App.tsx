@@ -6,23 +6,35 @@ import Routes from './routes';
 import MovieProvider from './context/MovieProvider';
 import SearchProvider from './context/SearchProvider';
 
+import { ThemeStore } from './context/ThemeStore';
+import { Theme } from './components/Theme';
+import { Scroll2Top } from './components/Scroll2Top';
+import { StyledContainer } from './components/StyledContainer';
+import { Navigation } from './components/Navigation';
+
 const App: React.FC = () => {
-  const [subtitle] = useState('List of movies');
+  const [subtitle] = useState('react hooks + typescript');
 
   return (
     <Router>
-      <MovieProvider>
-        <SearchProvider>
-          <Header subtitle={subtitle} />
-          <div className="container">
-            <Suspense fallback={'loading'}>
-              <NetworkErrorBoundary>
-                <Routes />
-              </NetworkErrorBoundary>
-            </Suspense>
-          </div>
-        </SearchProvider>
-      </MovieProvider>
+      <ThemeStore>
+        <Theme>
+          <MovieProvider>
+            <SearchProvider>
+              <Header subtitle={subtitle} />
+              <Navigation />
+              <StyledContainer>
+                <Suspense fallback={'loading'}>
+                  <NetworkErrorBoundary>
+                    <Routes />
+                  </NetworkErrorBoundary>
+                </Suspense>
+              </StyledContainer>
+              <Scroll2Top />
+            </SearchProvider>
+          </MovieProvider>
+        </Theme>
+      </ThemeStore>
     </Router>
   );
 };

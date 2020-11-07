@@ -1,4 +1,22 @@
+import { darken } from 'polished';
 import React, { Dispatch, SetStateAction } from 'react';
+import styled from 'styled-components';
+import { StyledButton } from '../Button';
+
+const StyledPagination = styled.div`
+  margin: 1.2rem auto;
+`;
+
+const StyledCurrentPage = styled.p`
+  display: inline-block;
+  color: ${({ theme }) => theme.textPrimary};
+  background: ${({ theme }) => theme.textThird};
+  width: 4.8rem;
+  text-align: center;
+  padding: 1.2rem 0;
+  margin: 0 0.05rem;
+  border-bottom: 0.3rem solid ${({ theme }) => darken(0.1, theme.textThird)};
+`;
 
 type PaginationProps = {
   totalResults: number;
@@ -27,14 +45,14 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   const navigation = (pageNumber: number, name?: string, disabled?: boolean): JSX.Element => {
     return (
-      <button
+      <StyledButton
         key={name || pageNumber}
         className="pagination__button button"
         onClick={handlePage(pageNumber)}
         disabled={disabled}
       >
         {name || pageNumber}
-      </button>
+      </StyledButton>
     );
   };
 
@@ -56,14 +74,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     })();
 
     for (let i = destPage + 1; i < destPage + 6; i++) {
-      item =
-        i === currentPage ? (
-          <p key={i} className="pagination__currentPage">
-            {i}
-          </p>
-        ) : (
-          navigation(i)
-        );
+      item = i === currentPage ? <StyledCurrentPage key={i}>{i}</StyledCurrentPage> : navigation(i);
       if (i > totalPages) {
         break;
       }
@@ -81,5 +92,5 @@ export const Pagination: React.FC<PaginationProps> = ({
 
   if (!hasResults) return null;
 
-  return <div className="pagination">{createButtons()}</div>;
+  return <StyledPagination>{createButtons()}</StyledPagination>;
 };

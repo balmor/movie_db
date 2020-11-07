@@ -33,9 +33,11 @@ yarn build
 - [x] add serach movie
 - [x] add pagination
 - [x] use webpack 5 / react 17
-- [ ] use styled-components
-- [ ] add theme context light/dark
+- [x] use styled-components
+- [x] add theme context for mode light/dark
 - [ ] add translation react-i18next
 - [ ] fix pagination after back button from search
+- [ ] add error message from request
+- [ ] use react-query
 - [ ] add unit tests - jest
 - [ ] add e2e tests - cypress

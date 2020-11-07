@@ -1,4 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledSeparator = styled.i`
+  color: ${({ theme }) => theme.third};
+  font-style: normal;
+  margin: 0 0.5rem;
+
+  &:before {
+    content: '|';
+  }
+`;
 
 type NotificationProps = {
   totalResults: number;
@@ -19,9 +30,9 @@ export const Notification: React.FC<NotificationProps> = ({
       {hasResults && (
         <p>
           Total results: {totalResults}
-          <span className="search__results--sep">|</span>
+          <StyledSeparator />
           Current page: {currentPage}
-          <span className="search__results--sep">|</span>
+          <StyledSeparator />
           Total pages: {totalPages}
         </p>
       )}

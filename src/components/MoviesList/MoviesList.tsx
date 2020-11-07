@@ -1,11 +1,10 @@
 import React, { useContext } from 'react';
 
-import ScrollToTop from 'react-scroll-up';
-import { SwapSpinner } from 'react-spinners-kit';
 import { MoviesContext } from '../../context/MovieProvider';
 import useMovies from '../../hooks/useMovies';
 import { Movie } from '../Movie';
 import { Failed } from '../Failed';
+import { StyledSpinner } from '../StyledSpinner';
 
 export const MoviesList: React.FC = () => {
   const {
@@ -19,28 +18,24 @@ export const MoviesList: React.FC = () => {
   const results = data?.results;
 
   if (isLoading) {
-    return <SwapSpinner size={150} color="#01d277" />;
+    return <StyledSpinner />;
   }
 
   if (isFailed) {
-    return <Failed isFailed={isFailed} />;
+    return <Failed errorMessage={'Somthing went wrong'} />;
   }
 
   return (
-    <div className="movies">
+    <>
       {results?.map((movie) => (
-        <div key={movie.id}>
-          <Movie
-            movieId={movie.id}
-            movieTitle={movie.title}
-            moviePoster={movie.poster_path}
-            movieLink={`/movie/${movie.id}`}
-          />
-        </div>
+        <Movie
+          key={movie.id}
+          movieId={movie.id}
+          movieTitle={movie.title}
+          moviePoster={movie.poster_path}
+          movieLink={`/movie/${movie.id}`}
+        />
       ))}
-      <ScrollToTop showUnder={160} style={{ right: 200 }}>
-        <i className="scroll-up" />
-      </ScrollToTop>
-    </div>
+    </>
   );
 };

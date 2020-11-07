@@ -1,5 +1,5 @@
 {
-  "name": "movies",
+  "name": "react_movies",
   "version": "1.0.0",
   "main": "index.js",
   "author": "Damian Duda",
@@ -21,6 +21,7 @@
     "css-loader": "^5.0.0",
     "file-loader": "^6.2.0",
     "husky": "^4.3.0",
+    "polished": "^4.0.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
@@ -29,6 +30,8 @@
     "rest-hooks": "^4.5.9",
     "simple-line-icons": "^2.5.5",
     "style-loader": "^2.0.0",
+    "styled-icons": "^10.22.0",
+    "styled-normalize": "^8.0.7",
     "url-loader": "^4.1.1",
     "webfontloader": "^1.6.28"
   },
@@ -66,5 +69,8 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged --bail --no-restage && yarn run lint"
     }
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

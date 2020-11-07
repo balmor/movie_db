@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { SwapSpinner } from 'react-spinners-kit';
+import { useParams } from 'react-router-dom';
 import settings from '../../api/config';
 import tmdbSquare from '../../images/tmdb-square.svg';
+import { StyledLink } from '../Button';
 import { Failed } from '../Failed';
+import { StyledMovieDetail, StyledMoviePosterDetail, StyledMovieTitleDetail } from '../StyledMovie';
+import { StyledSpinner } from '../StyledSpinner';
 
 export const MovieDetail: React.FC = () => {
   type ParamTypes = {
@@ -17,6 +19,7 @@ export const MovieDetail: React.FC = () => {
       title: string;
       overview: string;
       poster_path?: string;
+      backdrop_path?: string;
     } | null;
   };
 
@@ -49,30 +52,32 @@ export const MovieDetail: React.FC = () => {
     fetchMovie().catch((err) => err);
   }, [api.baseUrl, api.singleMovie, headers, movieId, params]);
 
-  const tmdbPoster = movie?.data?.poster_path
-    ? `${api.baseImageUrl}${api.imageSize}${movie?.data?.poster_path}`
-    : tmdbSquare;
+  const moviePoster = (): string | undefined => {
+    if (movie?.data?.backdrop_path) {
+      return `${api.baseImageUrl}${api.imageSize}${movie?.data?.backdrop_path}`;
+    } else if (movie?.data?.poster_path) {
+      return `${api.baseImageUrl}${api.imageSize}${movie?.data?.poster_path}`;
+    }
+
+    return tmdbSquare;
+  };
 
   if (movie?.isLoading) {
-    return <SwapSpinner size={150} color="#01d277" />;
+    return <StyledSpinner />;
   }
 
   if (movie?.isFailed) {
-    return <Failed isFailed={movie.isFailed} />;
+    return <Failed errorMessage={'Somthing went wrong'} />;
   }
 
   return (
     <>
-      <div className="movies--space">
-        <div className="movies__box movies__box--detail">
-          <img className="movies__poster" src={tmdbPoster} alt={movie?.data?.title} />
-          <h2 className="movies__title movies__title--center">{movie?.data?.title}</h2>
-          <p className="movies__description">{movie?.data?.overview}</p>
-        </div>
-      </div>
-      <Link className="button" to="/">
-        Back to Homepage
-      </Link>
+      <StyledMovieDetail>
+        <StyledMoviePosterDetail src={moviePoster()} alt={movie?.data?.title} />
+        <StyledMovieTitleDetail>{movie?.data?.title}</StyledMovieTitleDetail>
+        <p>{movie?.data?.overview}</p>
+      </StyledMovieDetail>
+      <StyledLink to="/">Back to Homepage</StyledLink>
     </>
   );
 };

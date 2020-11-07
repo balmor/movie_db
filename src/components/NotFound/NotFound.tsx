@@ -1,11 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { StyledLink } from '../Button';
+
+const StyledNotFound = styled.div`
+  display: block;
+  margin-bottom: 4.8rem;
+  text-align: center;
+  font-size: 3.2rem;
+`;
 
 export const NotFound: React.FC = () => (
-  <div className="container">
-    <div className="notfound">404 Page not found</div>
-    <Link to="/" className="button">
-      Back to Homepage
-    </Link>
-  </div>
+  <>
+    <StyledNotFound>404 Page not found</StyledNotFound>
+    <StyledLink to="/">Back to Homepage</StyledLink>
+  </>
 );
