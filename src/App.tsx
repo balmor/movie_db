@@ -1,5 +1,4 @@
 import React, { useState, Suspense } from 'react';
-import { NetworkErrorBoundary } from 'rest-hooks';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Header } from './components/Header';
 import Routes from './routes';
@@ -25,9 +24,7 @@ const App: React.FC = () => {
               <Navigation />
               <StyledContainer>
                 <Suspense fallback={'loading'}>
-                  <NetworkErrorBoundary>
-                    <Routes />
-                  </NetworkErrorBoundary>
+                  <Routes />
                 </Suspense>
               </StyledContainer>
               <Scroll2Top />

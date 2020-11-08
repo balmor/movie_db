@@ -26,22 +26,6 @@ const config: webpack.Configuration = {
         ],
       },
       {
-        test: /\.s?css$/,
-        use: [
-          {
-            // Creates `style` nodes from JS strings
-            loader: 'style-loader',
-          },
-          {
-            // Translates CSS into CommonJS
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
-        ],
-      },
-      {
         test: /\.(ico|gif|png|jpg|jpeg|svg|webp)$/,
         use: [
           {

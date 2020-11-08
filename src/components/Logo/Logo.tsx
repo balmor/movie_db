@@ -6,7 +6,7 @@ const StyledLogo = styled.a`
   display: block;
 `;
 
-export const Logo = () => (
+export const Logo = (): JSX.Element => (
   <StyledLogo href="https://www.themoviedb.org/">
     <img alt="TMDb" src={tmdb} width="200" />
   </StyledLogo>
