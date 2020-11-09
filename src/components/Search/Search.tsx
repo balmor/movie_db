@@ -6,6 +6,7 @@ import { SearchBox } from '../SearchBox';
 import { Notification } from '../Notification';
 import { Pagination } from '../Pagination';
 import { StyledSpinner } from '../StyledSpinner';
+import { Translate } from '../Translate';
 
 export const Search: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -31,6 +32,9 @@ export const Search: React.FC = () => {
 
   return (
     <>
+      <h2>
+        <Translate i18nKey="search" />
+      </h2>
       <SearchBox pageNumber={pageNumber} setPageNumber={setPageNumber} />
       {results.length > 0 && page && total_pages && total_results && (
         <>
@@ -39,7 +43,7 @@ export const Search: React.FC = () => {
         </>
       )}
 
-      {isFailed && <Failed errorMessage={'Somthing went wrong'} />}
+      {isFailed && <Failed />}
       {isLoading ? (
         <StyledSpinner />
       ) : (

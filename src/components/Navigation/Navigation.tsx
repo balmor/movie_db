@@ -3,6 +3,12 @@ import { HeaderContainer } from '../StyledContainer';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { size, darken } from 'polished';
+import { Translate } from '../Translate';
+import { langOptions } from '../../actions/i18n';
+import i18next from 'i18next';
+import { LangSwitcher } from '../LangSwitcher';
+import { Toggler } from '../Toggler';
+import { useTranslation } from 'react-i18next';
 
 const StyledNavigation = styled.nav`
   margin-bottom: 1.6rem;
@@ -46,21 +52,39 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export const Navigation: React.FC = () => (
-  <StyledNavigation>
-    <HeaderContainer>
-      <StyledNavigationList>
-        <StyledNavigationItem>
-          <StyledNavLink to="/" exact={true}>
-            Home
-          </StyledNavLink>
-        </StyledNavigationItem>
-        <StyledNavigationItem>
-          <StyledNavLink to="/movies" exact={true}>
-            Top rated movies
-          </StyledNavLink>
-        </StyledNavigationItem>
-      </StyledNavigationList>
-    </HeaderContainer>
-  </StyledNavigation>
-);
+const StyledOptions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 6rem;
+`;
+
+export const Navigation: React.FC = () => {
+  const { i18n } = useTranslation();
+
+  return (
+    <StyledNavigation>
+      <HeaderContainer>
+        <StyledNavigationList>
+          <StyledNavigationItem>
+            <StyledNavLink to="/" exact={true}>
+              <Translate i18nKey="home" />
+            </StyledNavLink>
+          </StyledNavigationItem>
+          <StyledNavigationItem>
+            <StyledNavLink to="/movies" exact={true}>
+              <Translate i18nKey="topRatedMovie" />
+            </StyledNavLink>
+          </StyledNavigationItem>
+        </StyledNavigationList>
+        <StyledOptions>
+          <Toggler />
+          {langOptions
+            .filter((test) => test.value !== i18next.language)
+            .map((lang) => (
+              <LangSwitcher key={lang.value} {...lang} isActive={lang.value === i18n.language} />
+            ))}
+        </StyledOptions>
+      </HeaderContainer>
+    </StyledNavigation>
+  );
+};

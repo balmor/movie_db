@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { SearchContext } from '../../context/SearchProvider';
 import useSearch from '../../hooks/useSearch';
@@ -19,13 +20,14 @@ const StyledForm = styled.form`
 `;
 
 export const SearchBox: React.FC<SearchBoxProps> = ({
-  searchPlaceholder = 'Search Movie Title...',
+  searchPlaceholder = 'searchMovie',
   pageNumber,
   setPageNumber,
 }) => {
   const [searchInput, setSearchInput] = useState('');
   const [query, setQuery] = useState('');
   const { movies, dispatchMovies } = useContext(SearchContext);
+  const { t } = useTranslation();
 
   useSearch(movies, dispatchMovies, query, pageNumber);
 
@@ -41,7 +43,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
 
   return (
     <StyledForm onSubmit={handleSearchSubmit}>
-      <SearchInput handleSearchInput={handleSearchInput} searchPlaceholder={searchPlaceholder} />
+      <SearchInput handleSearchInput={handleSearchInput} searchPlaceholder={t(searchPlaceholder)} />
       <SearchButton />
     </StyledForm>
   );

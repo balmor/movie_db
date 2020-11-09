@@ -5,6 +5,7 @@ import useMovies from '../../hooks/useMovies';
 import { Movie } from '../Movie';
 import { Failed } from '../Failed';
 import { StyledSpinner } from '../StyledSpinner';
+import { Translate } from '../Translate';
 
 export const MoviesList: React.FC = () => {
   const {
@@ -22,11 +23,14 @@ export const MoviesList: React.FC = () => {
   }
 
   if (isFailed) {
-    return <Failed errorMessage={'Somthing went wrong'} />;
+    return <Failed />;
   }
 
   return (
     <>
+      <h2>
+        <Translate i18nKey="topRatedMovie" />
+      </h2>
       {results?.map((movie) => (
         <Movie
           key={movie.id}

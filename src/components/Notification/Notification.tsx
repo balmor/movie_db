@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Translate } from '../Translate';
 
 const StyledSeparator = styled.i`
   color: ${({ theme }) => theme.third};
@@ -29,11 +30,11 @@ export const Notification: React.FC<NotificationProps> = ({
     <>
       {hasResults && (
         <p>
-          Total results: {totalResults}
+          <Translate i18nKey="totalResults" />: {totalResults}
           <StyledSeparator />
-          Current page: {currentPage}
+          <Translate i18nKey="currentPage" />: {currentPage}
           <StyledSeparator />
-          Total pages: {totalPages}
+          <Translate i18nKey="totalPages" />: {totalPages}
         </p>
       )}
 

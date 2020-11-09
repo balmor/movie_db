@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StyledLink } from '../Button';
+import { Translate } from '../Translate';
 
 const StyledNotFound = styled.div`
   display: block;
@@ -11,7 +12,11 @@ const StyledNotFound = styled.div`
 
 export const NotFound: React.FC = () => (
   <>
-    <StyledNotFound>404 Page not found</StyledNotFound>
-    <StyledLink to="/">Back to Homepage</StyledLink>
+    <StyledNotFound>
+      <Translate i18nKey="notFound" />
+    </StyledNotFound>
+    <StyledLink to="/">
+      <Translate i18nKey="backHome" />
+    </StyledLink>
   </>
 );

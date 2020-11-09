@@ -1,5 +1,6 @@
 import { darken } from 'polished';
 import React, { Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { StyledButton } from '../Button';
 
@@ -34,6 +35,8 @@ export const Pagination: React.FC<PaginationProps> = ({
   const prevDisabled = currentPage === 1,
     nextDisabled = currentPage === totalPages,
     hasResults = totalResults > 1;
+
+  const { t } = useTranslation();
 
   const handlePage = (pageNumber: number) => (): void => {
     if (pageNumber === 0 || pageNumber > totalPages) {
@@ -82,10 +85,10 @@ export const Pagination: React.FC<PaginationProps> = ({
       items.push(item);
     }
 
-    items.unshift(navigation(currentPage - 1, 'prev', prevDisabled));
-    items.unshift(navigation(1, 'first', prevDisabled));
-    items.push(navigation(currentPage + 1, 'next', nextDisabled));
-    items.push(navigation(totalPages, 'last', nextDisabled));
+    items.unshift(navigation(currentPage - 1, t('prev'), prevDisabled));
+    items.unshift(navigation(1, t('first'), prevDisabled));
+    items.push(navigation(currentPage + 1, t('next'), nextDisabled));
+    items.push(navigation(totalPages, t('last'), nextDisabled));
 
     return items;
   };

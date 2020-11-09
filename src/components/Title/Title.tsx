@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Translate } from '../Translate';
 
 const StyledTitle = styled.div`
   h1 {
@@ -15,14 +16,13 @@ const StyledTitle = styled.div`
   }
 `;
 
-export type TitleProps = {
-  title: string;
-  subtitle?: string;
-};
-
-export const Title: React.FC<TitleProps> = ({ title, subtitle }) => (
+export const Title: React.FC = (): JSX.Element => (
   <StyledTitle>
-    <h1 className="header__title">{title}</h1>
-    {subtitle && <h2 className="header__subtitle">{subtitle}</h2>}
+    <h1 className="header__title">
+      <Translate i18nKey="movieDatabase" />
+    </h1>
+    <h2 className="header__subtitle">
+      <Translate i18nKey="subtitle" />
+    </h2>
   </StyledTitle>
 );

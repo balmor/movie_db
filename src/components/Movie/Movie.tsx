@@ -4,6 +4,7 @@ import tmdbSquare from '../../images/tmdb-square.svg';
 import settings from '../../api/config';
 import { StyledLink } from '../Button';
 import { StyledMovie, StyledMoviePoster, StyledMovieTitle } from '../StyledMovie';
+import { Translate } from '../Translate';
 
 type MovieProps = {
   movieId: number;
@@ -23,7 +24,9 @@ export const Movie: React.FC<MovieProps> = ({ movieId, movieTitle, moviePoster, 
         <StyledMoviePoster src={tmdbPoster} alt={movieTitle} />
       </Link>
       <StyledMovieTitle>{movieTitle}</StyledMovieTitle>
-      <StyledLink to={movieLink}>view</StyledLink>
+      <StyledLink to={movieLink}>
+        <Translate i18nKey="view" />
+      </StyledLink>
     </StyledMovie>
   );
 };

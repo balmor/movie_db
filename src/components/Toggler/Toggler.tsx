@@ -8,9 +8,7 @@ import { Moon } from '@styled-icons/feather/Moon';
 const icon = css`
   color: ${({ theme }) => theme.secondary};
   cursor: pointer;
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
+  align-self: center;
 
   &:hover {
     color: ${({ theme }) => theme.third};
@@ -31,9 +29,9 @@ export const Toggler: React.FC = () => {
   return (
     <>
       {theme === ThemeMode.Light ? (
-        <StyledMoon size={32} onClick={() => switchTheme(ThemeMode.Dark)} />
+        <StyledMoon size={20} onClick={() => switchTheme(ThemeMode.Dark)} />
       ) : (
-        <StyledSun size={32} onClick={() => switchTheme(ThemeMode.Light)} />
+        <StyledSun size={20} onClick={() => switchTheme(ThemeMode.Light)} />
       )}
     </>
   );

@@ -6,6 +6,7 @@ import { StyledLink } from '../Button';
 import { Failed } from '../Failed';
 import { StyledMovieDetail, StyledMoviePosterDetail, StyledMovieTitleDetail } from '../StyledMovie';
 import { StyledSpinner } from '../StyledSpinner';
+import { Translate } from '../Translate';
 
 export const MovieDetail: React.FC = () => {
   type ParamTypes = {
@@ -67,7 +68,7 @@ export const MovieDetail: React.FC = () => {
   }
 
   if (movie?.isFailed) {
-    return <Failed errorMessage={'Somthing went wrong'} />;
+    return <Failed />;
   }
 
   return (
@@ -77,7 +78,9 @@ export const MovieDetail: React.FC = () => {
         <StyledMovieTitleDetail>{movie?.data?.title}</StyledMovieTitleDetail>
         <p>{movie?.data?.overview}</p>
       </StyledMovieDetail>
-      <StyledLink to="/">Back to Homepage</StyledLink>
+      <StyledLink to="/">
+        <Translate i18nKey="backHome" />
+      </StyledLink>
     </>
   );
 };

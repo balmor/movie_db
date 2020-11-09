@@ -1,5 +1,9 @@
-import React, { useState, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import i18n from 'i18next';
+import { useTranslation, initReactI18next } from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
 import { Header } from './components/Header';
 import Routes from './routes';
 import MovieProvider from './context/MovieProvider';
@@ -10,17 +14,18 @@ import { Theme } from './components/Theme';
 import { Scroll2Top } from './components/Scroll2Top';
 import { StyledContainer } from './components/StyledContainer';
 import { Navigation } from './components/Navigation';
+import { i18nConfig } from './actions/i18n';
+
+i18n.use(LanguageDetector).use(initReactI18next).init(i18nConfig);
 
 const App: React.FC = () => {
-  const [subtitle] = useState('react hooks + typescript');
-
   return (
     <Router>
       <ThemeStore>
         <Theme>
           <MovieProvider>
             <SearchProvider>
-              <Header subtitle={subtitle} />
+              <Header />
               <Navigation />
               <StyledContainer>
                 <Suspense fallback={'loading'}>
