@@ -35,7 +35,7 @@ yarn build
 - [x] use webpack 5 / react 17
 - [x] use styled-components
 - [x] add theme context for mode light/dark
-- [ ] add translation react-i18next
+- [x] add translation react-i18next
 - [ ] fix pagination after back button from search
 - [ ] add error message from request
 - [ ] use react-query
