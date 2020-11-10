@@ -16,12 +16,13 @@ export const MovieDetail: React.FC = () => {
   type MovieTypes = {
     isLoading: boolean;
     isFailed: boolean;
-    data: {
+    data?: {
       title: string;
       overview: string;
       poster_path?: string;
       backdrop_path?: string;
     } | null;
+    error?: string;
   };
 
   const { api, headers, params } = settings;
@@ -43,7 +44,7 @@ export const MovieDetail: React.FC = () => {
       }
 
       setMovie({
-        data: data.status_message || 'Unable to fetch',
+        error: data.status_message || 'Unable to fetch',
         isLoading: false,
         isFailed: true,
       });
@@ -68,7 +69,7 @@ export const MovieDetail: React.FC = () => {
   }
 
   if (movie?.isFailed) {
-    return <Failed />;
+    return <Failed errorMessage={movie.error} />;
   }
 
   return (

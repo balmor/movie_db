@@ -1,19 +1,21 @@
-import { MoviesType, MoviesActionTypes, SuccessResponse, FailureResponse } from '../actions/movies';
+import { MoviesType, MoviesActionTypes, SuccessResponse } from '../actions/movies';
 
 export type IState = {
-  data: FailureResponse | SuccessResponse | null | undefined;
+  data?: SuccessResponse | null | undefined;
+  error?: string | null | undefined;
   isLoading: boolean;
   isFailed: boolean;
 };
 
 export const initialState: IState = {
   data: null,
+  error: null,
   isLoading: false,
   isFailed: false,
 };
 
 const reducer = (state: IState, action: MoviesActionTypes): IState => {
-  const { type, data } = action;
+  const { type, data, error } = action;
 
   switch (type) {
     case MoviesType.REQUEST:
@@ -21,7 +23,7 @@ const reducer = (state: IState, action: MoviesActionTypes): IState => {
     case MoviesType.SUCCESS:
       return { ...state, data, isLoading: false, isFailed: false };
     case MoviesType.FAILURE:
-      return { ...state, data, isLoading: false, isFailed: true };
+      return { ...state, error, isLoading: false, isFailed: true };
     default:
       return state;
   }

@@ -1,24 +1,21 @@
-import {
-  SearchType,
-  SearchActionTypes,
-  SuccessSearchResponse,
-  FailureSearchResponse,
-} from '../actions/search';
+import { SearchType, SearchActionTypes, SuccessSearchResponse } from '../actions/search';
 
 export type ISearchState = {
-  data: FailureSearchResponse | SuccessSearchResponse | null | undefined;
+  data?: SuccessSearchResponse | null | undefined;
+  error?: string | null | undefined;
   isLoading: boolean;
   isFailed: boolean;
 };
 
 export const initialSearchState: ISearchState = {
   data: null,
+  error: null,
   isLoading: false,
   isFailed: false,
 };
 
 const reducer = (state: ISearchState, action: SearchActionTypes): ISearchState => {
-  const { type, data } = action;
+  const { type, data, error } = action;
 
   switch (type) {
     case SearchType.SEARCH_REQUEST:
@@ -31,7 +28,7 @@ const reducer = (state: ISearchState, action: SearchActionTypes): ISearchState =
         isFailed: false,
       };
     case SearchType.SEARCH_FAILURE:
-      return { ...state, data, isLoading: false, isFailed: true };
+      return { ...state, error, isLoading: false, isFailed: true };
     default:
       return state;
   }

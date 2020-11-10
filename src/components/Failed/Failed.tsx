@@ -10,7 +10,7 @@ const StyledFailed = styled.p`
 `;
 
 type FailedProps = {
-  errorMessage?: string | undefined;
+  errorMessage?: string | null | undefined;
 };
 
 export const Failed: React.FC<FailedProps> = ({ errorMessage }) => (

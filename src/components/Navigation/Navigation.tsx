@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { size, darken } from 'polished';
 import { Translate } from '../Translate';
-import { langOptions } from '../../actions/i18n';
+import { langOptions } from '../../i18n';
 import i18next from 'i18next';
 import { LangSwitcher } from '../LangSwitcher';
 import { Toggler } from '../Toggler';

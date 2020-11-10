@@ -10,7 +10,7 @@ import { Translate } from '../Translate';
 export const MoviesList: React.FC = () => {
   const {
     movies,
-    movies: { data, isLoading, isFailed },
+    movies: { data, error, isLoading, isFailed },
     dispatchMovies,
   } = useContext(MoviesContext);
 
@@ -23,7 +23,7 @@ export const MoviesList: React.FC = () => {
   }
 
   if (isFailed) {
-    return <Failed />;
+    return <Failed errorMessage={error} />;
   }
 
   return (

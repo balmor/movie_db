@@ -37,7 +37,7 @@ yarn build
 - [x] add theme context for mode light/dark
 - [x] add translation react-i18next
 - [ ] fix pagination after back button from search
-- [ ] add error message from request
+- [x] add error message from request
 - [ ] use react-query
 - [ ] add unit tests - jest
 - [ ] add e2e tests - cypress

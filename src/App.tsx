@@ -14,7 +14,7 @@ import { Theme } from './components/Theme';
 import { Scroll2Top } from './components/Scroll2Top';
 import { StyledContainer } from './components/StyledContainer';
 import { Navigation } from './components/Navigation';
-import { i18nConfig } from './actions/i18n';
+import { i18nConfig } from './i18n';
 
 i18n.use(LanguageDetector).use(initReactI18next).init(i18nConfig);
 

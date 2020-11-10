@@ -11,7 +11,7 @@ import { Translate } from '../Translate';
 export const Search: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const {
-    movies: { data, isLoading, isFailed },
+    movies: { data, error, isLoading, isFailed },
   } = useContext(SearchContext);
 
   const results = data?.results || [];
@@ -43,7 +43,7 @@ export const Search: React.FC = () => {
         </>
       )}
 
-      {isFailed && <Failed />}
+      {isFailed && <Failed errorMessage={error} />}
       {isLoading ? (
         <StyledSpinner />
       ) : (
