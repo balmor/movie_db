@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import settings from '../../api/config';
 import tmdbSquare from '../../images/tmdb-square.svg';
-import { StyledLink } from '../Button';
+import { StyledButton } from '../Button';
 import { Failed } from '../Failed';
 import { StyledMovieDetail, StyledMoviePosterDetail, StyledMovieTitleDetail } from '../StyledMovie';
 import { StyledSpinner } from '../StyledSpinner';
 import { Translate } from '../Translate';
 
+type ParamTypes = {
+  movieId?: string;
+};
+
+type MovieTypes = {
+  isLoading: boolean;
+  isFailed: boolean;
+  data?: {
+    title: string;
+    overview: string;
+    poster_path?: string;
+    backdrop_path?: string;
+  } | null;
+  error?: string;
+};
+
 export const MovieDetail: React.FC = () => {
-  type ParamTypes = {
-    movieId?: string;
-  };
-
-  type MovieTypes = {
-    isLoading: boolean;
-    isFailed: boolean;
-    data?: {
-      title: string;
-      overview: string;
-      poster_path?: string;
-      backdrop_path?: string;
-    } | null;
-    error?: string;
-  };
-
+  const history = useHistory();
   const { api, headers, params } = settings;
   const { movieId = '' } = useParams<ParamTypes>();
   const [movie, setMovie] = useState<MovieTypes | null>(null);
@@ -79,9 +80,9 @@ export const MovieDetail: React.FC = () => {
         <StyledMovieTitleDetail>{movie?.data?.title}</StyledMovieTitleDetail>
         <p>{movie?.data?.overview}</p>
       </StyledMovieDetail>
-      <StyledLink to="/">
+      <StyledButton onClick={() => history.goBack()}>
         <Translate i18nKey="backHome" />
-      </StyledLink>
+      </StyledButton>
     </>
   );
 };

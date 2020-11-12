@@ -11,18 +11,16 @@ import { ISearchState } from '../reducers/search';
 export default (
   movies: ISearchState,
   dispatchMovies: React.Dispatch<SearchActionTypes>,
-  query?: string,
+  query?: string | null | undefined,
   page?: number
 ): ISearchState => {
   useEffect(() => {
     const { api, headers, params } = settings;
 
-    if (query === '') return;
+    if (!query) return;
 
-    if (query) {
-      params.set('query', query);
-      params.set('page', String(page));
-    }
+    params.set('query', query);
+    params.set('page', String(page));
 
     const fetchData = async () => {
       dispatchMovies(fetchSearchRequest());
@@ -31,7 +29,7 @@ export default (
       const data = await response.json();
 
       if (response.status === 200) {
-        return dispatchMovies(fetchSearchSuccess(data));
+        return dispatchMovies(fetchSearchSuccess(data, query));
       }
 
       dispatchMovies(fetchSearchFailure(data.status_message));

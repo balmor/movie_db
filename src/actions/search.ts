@@ -8,12 +8,14 @@ export enum SearchType {
 export interface RequestSearchType {
   type: typeof SearchType.SEARCH_REQUEST;
   data: null;
+  query?: null;
   error?: null;
 }
 
 export interface SuccessSearchType {
   type: typeof SearchType.SEARCH_SUCCESS;
   data: SuccessSearchResponse;
+  query: string | null | undefined;
   error?: null;
 }
 
@@ -27,11 +29,13 @@ export interface SuccessSearchResponse {
 export interface FailureSearchType {
   type: typeof SearchType.SEARCH_FAILURE;
   error: string | null | undefined;
+  query?: null;
   data?: null;
 }
 
 export type FailureSearchResponse = {
   error: string | null | undefined;
+  query?: null;
   data?: null;
 };
 
@@ -41,9 +45,13 @@ export const fetchSearchRequest = (): RequestSearchType => ({
   type: SearchType.SEARCH_REQUEST,
   data: null,
 });
-export const fetchSearchSuccess = (data: SuccessSearchResponse): SuccessSearchType => ({
+export const fetchSearchSuccess = (
+  data: SuccessSearchResponse,
+  query: string | null | undefined
+): SuccessSearchType => ({
   type: SearchType.SEARCH_SUCCESS,
   data,
+  query,
 });
 export const fetchSearchFailure = (error: string): FailureSearchType => ({
   type: SearchType.SEARCH_FAILURE,

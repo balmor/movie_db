@@ -14,12 +14,12 @@ export const initialState: IState = {
   isFailed: false,
 };
 
-const reducer = (state: IState, action: MoviesActionTypes): IState => {
+const reducer = (state: IState = initialState, action: MoviesActionTypes): IState => {
   const { type, data, error } = action;
 
   switch (type) {
     case MoviesType.REQUEST:
-      return { ...initialState, isLoading: true, isFailed: false };
+      return { ...state, isLoading: true, isFailed: false };
     case MoviesType.SUCCESS:
       return { ...state, data, isLoading: false, isFailed: false };
     case MoviesType.FAILURE:

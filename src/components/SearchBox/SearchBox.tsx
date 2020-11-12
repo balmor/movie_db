@@ -24,9 +24,9 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   pageNumber,
   setPageNumber,
 }) => {
-  const [searchInput, setSearchInput] = useState('');
-  const [query, setQuery] = useState('');
   const { movies, dispatchMovies } = useContext(SearchContext);
+  const [searchInput, setSearchInput] = useState('');
+  const [query, setQuery] = useState(movies?.query || '');
   const { t } = useTranslation();
 
   useSearch(movies, dispatchMovies, query, pageNumber);
