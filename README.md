@@ -36,7 +36,7 @@ yarn build
 - [x] use styled-components
 - [x] add theme context for mode light/dark
 - [x] add translation react-i18next
-- [ ] fix pagination after back button from search
+- [x] fix pagination after back button from search
 - [x] add error message from request
 - [ ] use react-query
 - [ ] add unit tests - jest
