@@ -39,11 +39,6 @@ const config: webpack.Configuration = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
-  },
   plugins: [
     new Dotenv(),
     new HtmlWebpackPlugin({
@@ -51,6 +46,11 @@ const config: webpack.Configuration = {
       favicon: path.join(__dirname, 'public/images', 'favicon.png'),
     }),
   ],
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
+  },
 };
 
 export default config;
