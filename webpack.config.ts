@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack from 'webpack';
 import Dotenv from 'dotenv-webpack';
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config: webpack.Configuration = {
   entry: './src/index.tsx',
@@ -39,18 +40,17 @@ const config: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/',
   },
-  plugins: [new Dotenv()],
-  devServer: {
-    contentBase: path.join(__dirname, 'public'),
-    compress: true,
-    historyApiFallback: true,
-    open: true,
-    port: 5050,
-  },
+  plugins: [
+    new Dotenv(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'public', 'index.html'),
+      favicon: path.join(__dirname, 'public/images', 'favicon.png'),
+    }),
+  ],
 };
 
 export default config;
