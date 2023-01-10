@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHistory, useParams } from 'react-router-dom';
 import settings from '../../api/config';
+import { getLocale } from '../../i18n';
 import tmdbSquare from '../../images/tmdb-square.svg';
 import { StyledButton } from '../Button';
 import { Failed } from '../Failed';
@@ -29,8 +31,11 @@ export const MovieDetail: React.FC = () => {
   const { api, headers, params } = settings;
   const { movieId = '' } = useParams<ParamTypes>();
   const [movie, setMovie] = useState<MovieTypes | null>(null);
+  const { i18n: { language = 'en' } = {} } = useTranslation();
 
   useEffect(() => {
+    params.set('language', getLocale(language));
+
     const fetchMovie = async () => {
       setMovie({ data: null, isLoading: true, isFailed: false });
       const response = await fetch(`${api.baseUrl}${api.singleMovie}/${movieId}?${params}`, {
@@ -53,7 +58,7 @@ export const MovieDetail: React.FC = () => {
       throw new Error(data.status_message);
     };
     fetchMovie().catch((err) => err);
-  }, [api.baseUrl, api.singleMovie, headers, movieId, params]);
+  }, [api.baseUrl, api.singleMovie, headers, movieId, params, language]);
 
   const moviePoster = (): string | undefined => {
     if (movie?.data?.backdrop_path) {

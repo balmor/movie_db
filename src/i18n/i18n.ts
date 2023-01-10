@@ -4,6 +4,17 @@ import { LangOptions } from './locale/_types';
 import * as en from './locale/en/';
 import * as pl from './locale/pl/';
 
+export const getLocale = (language: string | null): string => {
+  switch (language) {
+    case 'en':
+      return 'en-GB';
+    case 'pl':
+      return 'pl-PL';
+    default:
+      return 'en-GB';
+  }
+};
+
 export const langOptions: LangOptions[] = [
   { value: 'en', label: 'English' },
   { value: 'pl', label: 'Polski' },

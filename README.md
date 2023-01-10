@@ -46,3 +46,4 @@ yarn build
 - [x] add translation react-i18next
 - [x] fix pagination after back button from search
 - [x] add error message from request
+- [x] fix issue with wrong language of fetching data

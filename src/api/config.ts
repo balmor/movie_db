@@ -22,7 +22,7 @@ const api: Api & Params = {
   topRated: '/3/movie/top_rated',
   singleMovie: '/3/movie/',
   searchMovie: '/3/search/movie',
-  language: 'pl-PL',
+  language: 'en-GB',
   api_key: process.env.REACT_APP_API_KEY,
   auth_token: process.env.REACT_APP_AUTH_TOKEN,
   baseImageUrl: 'https://image.tmdb.org',
@@ -44,3 +44,5 @@ export default {
   headers,
   params,
 };
+
+export const githubRepoLink = 'https://github.com/balmor/movie_db';

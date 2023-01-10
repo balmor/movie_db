@@ -9,6 +9,8 @@ import i18next from 'i18next';
 import { LangSwitcher } from '../LangSwitcher';
 import { Toggler } from '../Toggler';
 import { useTranslation } from 'react-i18next';
+import { Github } from '@styled-icons/icomoon/Github';
+import { githubRepoLink } from './../../api/config';
 
 const StyledNavigation = styled.nav`
   margin-bottom: 1.6rem;
@@ -52,14 +54,25 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
+const StyledGitHub = styled(Github)`
+  color: ${({ theme }) => theme.textPrimary};
+  &:hover {
+    color: ${({ theme }) => theme.third};
+  }
+`;
+const StyledLink = styled('a')`
+  display: inline-block;
+  align-self: center;
+`;
+
 const StyledOptions = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 6rem;
+  width: 9rem;
 `;
 
 export const Navigation: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   return (
     <StyledNavigation>
@@ -83,6 +96,9 @@ export const Navigation: React.FC = () => {
             .map((lang) => (
               <LangSwitcher key={lang.value} {...lang} isActive={lang.value === i18n.language} />
             ))}
+          <StyledLink href={githubRepoLink} rel="noopener noreferrer" title={t('github')}>
+            <StyledGitHub size="20" />
+          </StyledLink>
         </StyledOptions>
       </HeaderContainer>
     </StyledNavigation>

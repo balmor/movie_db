@@ -18,4 +18,5 @@ export const general: General = {
   first: 'pierwszy',
   last: 'ostatni',
   search: 'Szukaj filmu',
+  github: 'GitHub repozytorium',
 };

@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   fetchSearchRequest,
   fetchSearchSuccess,
@@ -6,6 +7,7 @@ import {
   SearchActionTypes,
 } from '../actions/search';
 import settings from '../api/config';
+import { getLocale } from '../i18n';
 import { ISearchState } from '../reducers/search';
 
 export default (
@@ -14,6 +16,8 @@ export default (
   query?: string | null | undefined,
   page?: number
 ): ISearchState => {
+  const { i18n: { language = 'en' } = {} } = useTranslation();
+
   useEffect(() => {
     const { api, headers, params } = settings;
 
@@ -21,6 +25,7 @@ export default (
 
     params.set('query', query);
     params.set('page', String(page));
+    params.set('language', getLocale(language));
 
     const fetchData = async () => {
       dispatchMovies(fetchSearchRequest());
@@ -38,7 +43,7 @@ export default (
     };
 
     fetchData().catch((err) => err);
-  }, [dispatchMovies, query, page]);
+  }, [dispatchMovies, query, page, language]);
 
   return movies;
 };
