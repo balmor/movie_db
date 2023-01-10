@@ -44,3 +44,5 @@ export default {
   headers,
   params,
 };
+
+export const githubRepoLink = 'https://github.com/balmor/movie_db';

@@ -21,4 +21,5 @@ export type General = {
   first: string;
   last: string;
   search: string;
+  github: string;
 };
