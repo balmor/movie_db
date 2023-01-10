@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
@@ -20,7 +20,7 @@ i18n.use(LanguageDetector).use(initReactI18next).init(i18nConfig);
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <HashRouter>
       <ThemeStore>
         <Theme>
           <MovieProvider>
@@ -37,7 +37,7 @@ const App: React.FC = () => {
           </MovieProvider>
         </Theme>
       </ThemeStore>
-    </Router>
+    </HashRouter>
   );
 };
 
