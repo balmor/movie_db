@@ -1,6 +1,6 @@
 # Movie List React app
 
-Frontend application using [The Movie Database API](https://developers.themoviedb.org). Built with React.
+Frontend application for display Movie Database using [The Movie Database API](https://developers.themoviedb.org) and reactjs.
 
 ## Getting Started
 
@@ -22,6 +22,14 @@ Build the app:
 yarn build
 ```
 
+## Link
+
+[Movie DB](https://balmor.github.io/movie_db/)
+
+## Podgląd
+
+[<img src="public/images/preview.png" width="500"/>](/public/images/preview.png)
+
 ## TODO:
 
 - [x] use API [themoviedb.org](https://developers.themoviedb.org/3/getting-started)
@@ -38,6 +46,3 @@ yarn build
 - [x] add translation react-i18next
 - [x] fix pagination after back button from search
 - [x] add error message from request
-- [ ] use react-query
-- [ ] add unit tests - jest
-- [ ] add e2e tests - cypress
