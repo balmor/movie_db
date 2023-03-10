@@ -40,9 +40,7 @@ const config: webpack.Configuration = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
-    new Dotenv({
-      systemvars: true,
-    }),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'public', 'index.html'),
       favicon: path.join(__dirname, 'public/images', 'favicon.png'),
