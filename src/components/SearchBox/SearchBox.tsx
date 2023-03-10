@@ -1,9 +1,9 @@
 import React, { Dispatch, SetStateAction, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import styled from 'styled-components';
+import { StyledForm } from '.';
 import { SearchContext } from '../../context/SearchProvider';
 import useSearch from '../../hooks/useSearch';
-import { SearchButton } from '../SearchButton/SearchButton';
+import { SearchButton } from '../SearchButton';
 import { SearchInput } from '../SearchInput';
 
 type SearchBoxProps = {
@@ -11,13 +11,6 @@ type SearchBoxProps = {
   pageNumber: number;
   setPageNumber: Dispatch<SetStateAction<number>>;
 };
-
-const StyledForm = styled.form`
-  display: flex;
-  position: relative;
-  width: 100%;
-  margin-bottom: 4.8rem;
-`;
 
 export const SearchBox: React.FC<SearchBoxProps> = ({
   searchPlaceholder = 'searchMovie',

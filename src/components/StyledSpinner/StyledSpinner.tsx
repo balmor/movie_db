@@ -1,12 +1,6 @@
 import React from 'react';
 import { SwapSpinner } from 'react-spinners-kit';
-import styled from 'styled-components';
-
-const StyledSwapSpinner = styled.div`
-  margin: 9.6rem auto;
-  width: 158px;
-  display: block;
-`;
+import { StyledSwapSpinner } from '.';
 
 export const StyledSpinner = (): JSX.Element => {
   return (

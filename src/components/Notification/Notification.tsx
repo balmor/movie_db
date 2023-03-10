@@ -1,16 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledSeparator } from '.';
 import { Translate } from '../Translate';
-
-const StyledSeparator = styled.i`
-  color: ${({ theme }) => theme.third};
-  font-style: normal;
-  margin: 0 0.5rem;
-
-  &:before {
-    content: '|';
-  }
-`;
 
 type NotificationProps = {
   totalResults: number;
