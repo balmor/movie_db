@@ -1,13 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import { StyledFailed } from '.';
 import { StyledLink } from '../Button';
 import { Translate } from '../Translate';
-
-const StyledFailed = styled.p`
-  font-size: 2.6rem;
-  text-align: center;
-  margin: 9.6rem auto;
-`;
 
 type FailedProps = {
   errorMessage?: string | null | undefined;
