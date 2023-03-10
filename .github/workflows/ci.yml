@@ -45,8 +45,8 @@ jobs:
         run: |
           yarn
           yarn build
-          env:
-            REACT_APP_TMDB_V4_AUTH_TOKEN: ${{ secrets.REACT_APP_TMDB_V4_AUTH_TOKEN }}
+        env:
+          REACT_APP_TMDB_V4_AUTH_TOKEN: ${{ secrets.REACT_APP_TMDB_V4_AUTH_TOKEN }}
 
       # Deploy
       - name: Deploy 🚀
