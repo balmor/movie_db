@@ -26,7 +26,7 @@ yarn build
 
 [Movie DB](https://balmor.github.io/movie_db/)
 
-## Podgląd
+## Preview
 
 [<img src="public/images/preview.png" width="500"/>](/public/images/preview.png)
 
