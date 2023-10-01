@@ -10,6 +10,7 @@ export type General = {
   topRatedMovie: string;
   backHome: string;
   somethingWrong: string;
+  toastDefault: string;
   notFound: string;
   searchMovie: string;
   view: string;

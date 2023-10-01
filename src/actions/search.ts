@@ -3,6 +3,7 @@ export enum SearchType {
   SEARCH_SUCCESS = 'SEARCH_SUCCESS',
   SEARCH_FAILURE = 'SEARCH_FAILURE',
   SEARCH_PAGINATION = 'SEARCH_PAGINATION',
+  SEARCH_CLEAR = 'SEARCH_CLEAR',
 }
 
 export interface RequestSearchType {
@@ -39,7 +40,18 @@ export type FailureSearchResponse = {
   data?: null;
 };
 
-export type SearchActionTypes = RequestSearchType | SuccessSearchType | FailureSearchType;
+export interface SearchClearType {
+  type: typeof SearchType.SEARCH_CLEAR;
+  data?: null;
+  error?: null;
+  query?: null;
+}
+
+export type SearchActionTypes =
+  | RequestSearchType
+  | SuccessSearchType
+  | FailureSearchType
+  | SearchClearType;
 
 export const fetchSearchRequest = (): RequestSearchType => ({
   type: SearchType.SEARCH_REQUEST,
@@ -56,4 +68,8 @@ export const fetchSearchSuccess = (
 export const fetchSearchFailure = (error: string): FailureSearchType => ({
   type: SearchType.SEARCH_FAILURE,
   error,
+});
+
+export const clearSearch = (): SearchClearType => ({
+  type: SearchType.SEARCH_CLEAR,
 });

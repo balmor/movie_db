@@ -7,6 +7,7 @@ import { Notification } from '../Notification';
 import { Pagination } from '../Pagination';
 import { StyledSpinner } from '../StyledSpinner';
 import { Translate } from '../Translate';
+import { Toast } from '../Toast';
 
 export const Search: React.FC = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -14,9 +15,7 @@ export const Search: React.FC = () => {
     movies: { data, error, isLoading, isFailed },
   } = useContext(SearchContext);
 
-  const results = data?.results || [];
-
-  const { page = 0, total_pages = 0, total_results = 0 } = data || {};
+  const { results = [], page = 0, total_pages = 0, total_results = 0 } = data || {};
 
   type PagesTypes = {
     currentPage: number;
@@ -29,6 +28,8 @@ export const Search: React.FC = () => {
     totalPages: total_pages,
     totalResults: total_results,
   };
+
+  const noResults = !pages.totalResults && !!pages.currentPage;
 
   return (
     <>
@@ -48,6 +49,7 @@ export const Search: React.FC = () => {
         <StyledSpinner />
       ) : (
         <>
+          {noResults && <Toast />}
           {results.map((movie) => (
             <Movie
               key={movie.id}

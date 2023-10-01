@@ -7,6 +7,7 @@ export const general: General = {
   topRatedMovie: 'Top rated movies',
   backHome: 'Back to Homepage',
   somethingWrong: 'Something went wrong',
+  toastDefault: 'No found any movie',
   notFound: '404 Page not found',
   searchMovie: 'Search Movie Title...',
   view: 'view',

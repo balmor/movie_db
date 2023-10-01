@@ -35,6 +35,8 @@ const reducer = (
       };
     case SearchType.SEARCH_FAILURE:
       return { ...state, error, isLoading: false, isFailed: true };
+    case SearchType.SEARCH_CLEAR:
+      return initialSearchState;
     default:
       return state;
   }

@@ -17,26 +17,26 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
   pageNumber,
   setPageNumber,
 }) => {
-  const { movies, dispatchMovies } = useContext(SearchContext);
+  const { movies, dispatchSearch } = useContext(SearchContext);
   const [searchInput, setSearchInput] = useState('');
   const [query, setQuery] = useState(movies?.query || '');
   const { t } = useTranslation();
 
-  useSearch(movies, dispatchMovies, query, pageNumber);
+  useSearch(movies, dispatchSearch, query, pageNumber);
 
   const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setPageNumber(1);
-    setQuery(searchInput);
-  };
-
-  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchInput(e.target.value);
+    setQuery(searchInput.trim());
   };
 
   return (
-    <StyledForm onSubmit={handleSearchSubmit}>
-      <SearchInput handleSearchInput={handleSearchInput} searchPlaceholder={t(searchPlaceholder)} />
+    <StyledForm onSubmit={handleSearchSubmit} role="search">
+      <SearchInput
+        setSearchValue={setSearchInput}
+        searchInput={searchInput}
+        searchPlaceholder={t(searchPlaceholder)}
+      />
       <SearchButton />
     </StyledForm>
   );

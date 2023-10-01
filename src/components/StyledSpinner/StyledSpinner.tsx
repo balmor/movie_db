@@ -4,8 +4,8 @@ import { StyledSwapSpinner } from '.';
 
 export const StyledSpinner = (): JSX.Element => {
   return (
-    <StyledSwapSpinner>
-      <SwapSpinner size={150} color="#01d277" />
+    <StyledSwapSpinner aria-busy="true">
+      <SwapSpinner size={100} color="#01d277" />
     </StyledSwapSpinner>
   );
 };

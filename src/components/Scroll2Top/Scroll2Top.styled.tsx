@@ -8,6 +8,13 @@ export const StyledScrollToTop = styled.i`
   border-radius: 15%;
   border: 0.2rem solid ${({ theme }) => darken(0.1, theme.third)};
   transition: all 0.2s ease-in-out;
+  margin-right: 10rem;
+  margin-bottom: 3rem;
+
+  @media screen and (max-width: 60rem) {
+    margin-right: 0;
+    margin-bottom: 0;
+  }
 
   &:before {
     border-right: 5px solid ${({ theme }) => theme.third};

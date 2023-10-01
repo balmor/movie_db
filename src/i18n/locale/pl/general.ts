@@ -7,6 +7,7 @@ export const general: General = {
   topRatedMovie: 'Najlepsze filmy',
   backHome: 'Wróć na początek',
   somethingWrong: 'Coś poszło nie tak',
+  toastDefault: 'Nie znaleziono żadnego filmu',
   notFound: '404 Nie znaleziono strony',
   searchMovie: 'Znajdź tytuł filmu...',
   view: 'zobacz',
