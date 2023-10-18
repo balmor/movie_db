@@ -4,6 +4,7 @@ import { MoviesList } from '../components/MoviesList';
 import { MovieDetail } from '../components/MovieDetail';
 import { NotFound } from '../components/NotFound';
 import { Search } from '../components/Search';
+import { Iframe } from '../components/Iframe';
 
 const Routes: React.FC = () => {
   return (
@@ -16,6 +17,9 @@ const Routes: React.FC = () => {
       </Route>
       <Route path="/movie/:movieId">
         <MovieDetail />
+      </Route>
+      <Route path="/iframe">
+        <Iframe />
       </Route>
       <Route path="*">
         <NotFound />
